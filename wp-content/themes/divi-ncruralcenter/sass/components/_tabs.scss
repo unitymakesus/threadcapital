@@ -1,0 +1,241 @@
+.et_pb_tabs {
+  border: none;
+  font-size: 18px;
+  line-height: 1.4em;
+
+  .et_pb_tabs_controls {
+    display: flex;
+
+    &::after {
+      display: none;
+    }
+
+    a {
+      color: $color-white;
+      display: block;
+      padding: 10px 30px;
+    }
+
+    li {
+      border-right: 3px solid $color-gray-light;
+      border-bottom: 0;
+      font-family: $font-sans-serif;
+      font-weight: 500;
+      display: block;
+
+      a {
+        background: $color-blue-a11y;
+      }
+
+      &:last-child {
+        border-right: none !important;
+      }
+
+      &.et_pb_tab_active {
+        background: none;
+
+        a {
+          color: $color-white !important;
+          position: relative;
+
+          &::after {
+            content: '';
+            position: absolute;
+            bottom: -32px;
+            left: calc(50% - 16px);
+            border: 16px solid transparent;
+            border-top-color: $color-blue-a11y;
+          }
+        }
+      }
+    }
+
+    @media (max-width: 980px) {
+      overflow: auto;
+	    -webkit-overflow-scrolling: touch;
+      background: #EFEFEF;
+      height: 80px;
+
+      li {
+        padding-bottom: 32px !important;
+        overflow: hidden;
+        font-size: 16px;
+        line-height: 1.2em;
+        min-width: 158px;
+        height: 80px;
+
+        a {
+          padding: 5px 10px;
+          height: 100%;
+        }
+      }
+    }
+  }
+
+  .et_pb_all_tabs {
+    background: $color-gray-light;
+  }
+
+  .et_pb_tab {
+    padding: 44px 30px;
+
+    h3 {
+      font-weight: normal;
+      font-size: 2em;
+    }
+
+    @media (max-width: 980px) {
+      padding: 30px 20px;
+    }
+  }
+
+  &.vertical-tabs {
+    display: flex;
+
+    .et_pb_tabs_controls {
+      width: 33.333%;
+      flex-direction: column;
+
+      li {
+        border-right: none;
+        border-bottom: 3px solid $color-gray-light;
+
+        &:last-child {
+          border-bottom: none !important;
+        }
+
+        &.et_pb_tab_active {
+          background: none;
+
+          a {
+            color: $color-white !important;
+            position: relative;
+
+            &::after {
+              right: -32px;
+              top: calc(50% - 16px);
+              bottom: auto;
+              left: auto;
+              border-top-color: transparent;
+              border-left-color: #237BC0;
+            }
+          }
+        }
+      }
+
+      @media (max-width: 980px) {
+        height: auto;
+        overflow: visible;
+
+        li {
+          height: auto;
+          min-width: 0;
+          background: $color-blue-a11y;
+          overflow: visible;
+        }
+      }
+    }
+
+    .et_pb_all_tabs {
+      width: 66.666%;
+    }
+  }
+
+  &.rural-counts {
+    .et_pb_tabs_controls {
+      li {
+        position: relative;
+        font-size: 16px;
+        line-height: 1.3em;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        a {
+          padding-left: 50px;
+        }
+
+        &::before {
+          font-weight: 600;
+          font-size: 30px;
+          position: absolute;
+          left: 10px;
+          top: 50%;
+          transform: translate3d(0, -50%, 0);
+          color: $color-white;
+          z-index: 1;
+        }
+
+        &:nth-child(1)::before {
+          content: '1';
+        }
+
+        &:nth-child(2)::before {
+          content: '2';
+        }
+
+        &:nth-child(3)::before {
+          content: '3';
+        }
+
+        &:nth-child(4)::before {
+          content: '4';
+        }
+
+        &:nth-child(5)::before {
+          content: '5';
+        }
+
+        &:nth-child(6)::before {
+          content: '6';
+        }
+
+        &:nth-child(7)::before {
+          content: '7';
+        }
+
+        &:nth-child(8)::before {
+          content: '8';
+        }
+
+        &:nth-child(9)::before {
+          content: '9';
+        }
+
+        &:nth-child(10)::before {
+          content: '10';
+        }
+      }
+
+      @media (max-width: 980px) {
+        width: 60px !important;
+
+        li {
+          a {
+            white-space: nowrap;
+            color: transparent;
+          }
+
+          &::before {
+            left: 20px;
+          }
+
+          &.et_pb_tab_active {
+            background: $color-blue-a11y;
+            a {
+              color: transparent !important;
+            }
+          }
+        }
+      }
+    }
+
+    .et_pb_all_tabs {
+      @media (max-width: 980px) {
+        width: calc(100% - 60px);
+        padding-left: 20px;
+      }
+    }
+  }
+}

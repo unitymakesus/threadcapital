@@ -1,0 +1,331 @@
+@media (max-width: 980px) {
+  #main-header {
+    .container {
+      width: 90%;
+    }
+  }
+}
+
+#logo {
+  position: relative;
+  top: -22px;
+
+  @media (max-width: 980px) {
+    top: 0;
+  }
+}
+
+// Secondary Nav
+#top-header a {
+  text-decoration: none;
+  transition: color .2s ease;
+
+  &:hover, &:active, &:focus {
+    color: $color-blue-a11y;
+    text-decoration: underline;
+  }
+}
+
+#et-secondary-menu > ul > li > a {
+  padding-bottom: 15px;
+}
+
+#et-secondary-menu li.menu-item-has-children {
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 30%;
+    border: 10px solid transparent;
+    border-bottom-color: $color-gray-light;
+    opacity: 0;
+    transition: opacity .3s;
+  }
+
+  &:hover, &:active, &:focus {
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  & > a:first-child {
+    padding-right: 0;
+
+    &::after {
+      display: none;
+    }
+  }
+
+  ul.sub-menu {
+    padding-top: 10px;
+    border: 2px solid $color-gray-light;
+
+    li {
+      padding: 0;
+      width: 100%;
+    }
+
+    a {
+      text-align: left;
+
+      &:hover, &:focus, &:active {
+        text-decoration: underline;
+        background: none;
+        opacity: 1;
+      }
+    }
+  }
+}
+
+#et-top-navigation, #et-secondary-menu {
+	font-weight: normal;
+}
+
+// Primary Nav
+#top-menu li, #mobile_menu li {
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 30%;
+    border: 17px solid transparent;
+    opacity: 0;
+    transition: opacity .3s;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  a:first-child {
+    padding-right: 0 !important;
+    padding-left: 20px;
+
+    &::after {
+      display: none;
+    }
+  }
+
+  &:hover, &:active, &:focus {
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  // Engagement (Blue)
+  &.menu-item-143 {
+    .sub-menu {
+      border: 2px solid $color-blue-dark;
+    }
+
+    &::before {
+      border-bottom-color: $color-blue-dark;
+    }
+
+    &.current-menu-ancestor {
+      & > a {
+        color: $color-blue-a11y;
+      }
+
+      .sub-menu {
+        .current-menu-item > a {
+          color: $color-blue-a11y;
+        }
+      }
+    }
+  }
+  // Leadership (Orange)
+  &.menu-item-144 {
+    .sub-menu {
+      border: 2px solid $color-orange-dark;
+    }
+
+    &::before {
+      border-bottom-color: $color-orange-dark;
+    }
+
+    &.current-menu-ancestor {
+      & > a {
+        color: $color-orange-a11y;
+      }
+
+      .sub-menu {
+        .current-menu-item > a {
+          color: $color-orange-a11y;
+        }
+      }
+    }
+  }
+  // Lending (Green)
+  &.menu-item-145 {
+    .sub-menu {
+      border: 2px solid $color-green-dark;
+    }
+
+    &::before {
+      border-bottom-color: $color-green-dark;
+    }
+
+    &.current-menu-ancestor {
+      & > a {
+        color: $color-green-a11y;
+      }
+
+      .sub-menu {
+        .current-menu-item > a {
+          color: $color-green-a11y;
+        }
+      }
+    }
+  }
+  // Research (Yellow)
+  &.menu-item-146 {
+    .sub-menu {
+      border: 2px solid $color-yellow-dark;
+    }
+
+    &::before {
+      border-bottom-color: $color-yellow-dark;
+    }
+
+    &.current-menu-ancestor {
+      & > a {
+        color: $color-yellow-a11y;
+      }
+
+      .sub-menu {
+        .current-menu-item > a {
+          color: $color-yellow-a11y;
+        }
+      }
+    }
+  }
+}
+
+#top-menu .sub-menu, #mobile_menu .sub-menu {
+  padding-top: 10px;
+  padding-left: 0 !important;
+
+  li {
+    padding: 0;
+    width: 100%;
+
+    &::before {
+      display: none !important;
+    }
+
+    a {
+      width: 100%;
+      text-transform: none;
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.35em;
+      padding: 10px 20px !important;
+      border-bottom: 0;
+
+      &:hover, &:focus, &:active {
+        text-decoration: underline;
+        background: none;
+        opacity: 1;
+      }
+    }
+
+    &.current-menu-item > a {
+      font-weight: bold;
+    }
+  }
+}
+
+// Collapsible and accessible mobile menu
+.mobile_menu_toggle {
+  display: block;
+  position: relative;
+  line-height: 0;
+  padding-bottom: 24px;
+  text-decoration: none;
+
+  &::before {
+    color: #237bc0;
+    position: relative;
+    top: 0;
+    left: 0;
+    font-size: 32px;
+    content: "\61";
+    cursor: pointer;
+    text-shadow: 0 0;
+    font-family: ETmodules!important;
+    font-weight: 400;
+    font-style: normal;
+    font-variant: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1;
+    text-transform: none;
+    speak: none;
+  }
+}
+
+.mobile_nav.opened {
+  .et_mobile_menu {
+    display: block;
+  }
+}
+
+#mobile_menu li {
+  position: relative;
+
+  &::before {
+    display: none;
+  }
+
+  a {
+    background: none;
+    font-weight: normal;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+  }
+}
+
+#mobile_menu .menu-item-has-children {
+  & > a {
+    position: relative;
+
+    &::after {
+      display: block !important;
+      font-family: 'ETmodules';
+      text-align: center;
+      speak: none;
+      font-weight: normal;
+      font-variant: normal;
+      text-transform: none;
+      -webkit-font-smoothing: antialiased;
+      position: absolute;
+      font-size: 16px;
+      content: '\4c';
+      top: 13px;
+      right: 10px;
+    }
+  }
+
+  .sub-menu {
+    display: none;
+    opacity: 0;
+    overflow: hidden;
+    height: 0;
+    transition: all .3s ease-in-out;
+    padding-top: 0;
+  }
+
+  &.opened {
+    .sub-menu {
+      display: block;
+      height: auto;
+      opacity: 1;
+    }
+
+    & > a::after {
+      content: '\4b';
+    }
+  }
+}

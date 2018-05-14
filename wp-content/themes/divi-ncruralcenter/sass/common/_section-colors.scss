@@ -1,0 +1,33 @@
+.et_section_specialty, .single-post #content-area, .archive #content-area {
+  $color-names: "orange" "yellow" "green" "blue";
+  $color-a11ys: $color-orange-a11y $color-yellow-a11y $color-green-a11y $color-blue-a11y;
+
+  @each $name in $color-names {
+    $i: index($color-names, $name);
+    &.#{$name} {
+      .widget_nav_menu, .breadcrumb-trail, .widget_categories {
+        & {
+          background: nth($color-a11ys, $i);
+
+          &::after {
+            background: nth($color-a11ys, $i);
+
+            // Edge
+            @supports (display:-ms-grid) {
+              background: none;
+              border-top-color: nth($color-a11ys, $i);
+              border-left-color: nth($color-a11ys, $i);
+            }
+
+            // IE
+            @media all and (-ms-high-contrast:none) {
+              background: none;
+              border-top-color: nth($color-a11ys, $i);
+              border-left-color: nth($color-a11ys, $i);
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -32,7 +32,7 @@ if ( ! is_page_template( 'page-template-blank.php' ) ) : ?>
 				<div id="footer-bottom">
 					<div class="container clearfix">
 						<div class="left">
-							&copy;<?php echo current_time('Y'); ?> NC Rural Center
+							&copy;<?php echo current_time('Y'); ?> Thread Capital
 						</div>
 						<div class="center">
 							<a href="/privacy-policy/">Privacy Policy</a>

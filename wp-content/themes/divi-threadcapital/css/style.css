@@ -673,6 +673,22 @@ a:hover, a:focus, a:active {
   fill: #FFF;
 }
 
+.process-graphic {
+  background: green;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  padding: 30px;
+}
+.process-graphic img {
+  height: 125px;
+}
+.process-graphic p {
+  color: white;
+  font-size: 20px;
+}
+
 @media (max-width: 980px) {
   #main-header .container {
     width: 90%;
@@ -945,14 +961,13 @@ a:hover, a:focus, a:active {
 }
 #main-footer .footer-widget {
   margin: 0 !important;
-  width: 33.333%;
+  width: 50%;
   padding: 0px;
   display: flex;
-  justify-content: flex-end;
-  flex-direction: column;
+  justify-content: center;
 }
 #main-footer .footer-widget:nth-child(2) {
-  text-align: center;
+  text-align: right;
 }
 #main-footer .footer-widget.last .et_pb_widget {
   float: none;
@@ -965,7 +980,11 @@ a:hover, a:focus, a:active {
 
 #footer-widgets {
   display: flex;
+  justify-content: space-around;
   padding-bottom: 20px;
+}
+#footer-widgets .fwidget {
+  margin-bottom: 0;
 }
 @media (max-width: 767px) {
   #footer-widgets {

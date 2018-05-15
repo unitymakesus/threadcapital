@@ -1,0 +1,17 @@
+.process-graphic {
+  background: green;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  padding: 30px;
+
+  img {
+    height: 125px;
+  }
+
+  p {
+    color: white;
+    font-size: 20px;
+  }
+}

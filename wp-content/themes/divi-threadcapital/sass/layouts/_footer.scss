@@ -25,14 +25,16 @@
 
   .footer-widget {
     margin: 0 !important;
-    width: 33.333%;
+    width: 50%;
     padding: 0px;
     display: flex;
-    justify-content: flex-end;
-    flex-direction: column;
+    justify-content: center;
+
+    &:nth-child(1) {
+    }
 
     &:nth-child(2) {
-      text-align: center;
+      text-align: right;
     }
 
     &.last {
@@ -51,7 +53,12 @@
 
 #footer-widgets {
   display: flex;
+  justify-content: space-around;
   padding-bottom: 20px;
+
+  .fwidget {
+    margin-bottom: 0;
+  }
 
   @media (max-width: 767px) {
     flex-wrap: wrap;

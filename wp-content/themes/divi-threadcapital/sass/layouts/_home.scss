@@ -29,6 +29,23 @@
   }
 }
 
+.callout-box {
+  background: #094468;
+  color: white;
+
+  h2 {
+    color: white;
+  }
+
+  .et_pb_text {
+    padding: 10px 20px 30px;
+  }
+
+  div:first-of-type {
+    padding: 0;
+  }
+}
+
 .et_pb_section.what-we-do {
   .et_pb_row_fullwidth {
     flex-wrap: wrap;

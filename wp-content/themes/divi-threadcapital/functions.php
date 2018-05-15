@@ -146,6 +146,41 @@ add_shortcode('staff-listing', function($atts) {
 
 
 /**
+ * Process Graphic Shortcode
+ */
+add_shortcode('process-graphic', function($atts) {
+	ob_start(); ?>
+		<div class="process-graphic">
+			<article>
+				<img src="<?php bloginfo('stylesheet_directory'); ?>/images/graphic/apply.png" />
+				<p>Apply in Minutes</p>
+			</article>
+			<img src="<?php bloginfo('stylesheet_directory'); ?>/images/graphic/vertical-lines.png" />
+
+			<article>
+				<img src="<?php bloginfo('stylesheet_directory'); ?>/images/graphic/connect.png" />
+				<p>Connect with Thread Capital team</p>
+			</article>
+			<img src="<?php bloginfo('stylesheet_directory'); ?>/images/graphic/vertical-lines.png" />
+
+			<article>
+				<img src="<?php bloginfo('stylesheet_directory'); ?>/images/graphic/submit.png" />
+				<p>Submit Verification Documents</p>
+			</article>
+			<img src="<?php bloginfo('stylesheet_directory'); ?>/images/graphic/vertical-lines.png" />
+
+			<article>
+				<img src="<?php bloginfo('stylesheet_directory'); ?>/images/graphic/funding.png" />
+				<p>Recive Funding</p>
+			</article>
+		</div>
+
+	<?php return ob_get_clean();
+});
+
+
+
+/**
 *	This will hide the Divi "Project" post type.
 *	Thanks to georgiee (https://gist.github.com/EngageWP/062edef103469b1177bc#gistcomment-1801080) for his improved solution.
 */

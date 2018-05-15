@@ -216,72 +216,16 @@ h2.category-title {
   text-decoration: underline;
 }
 
-.et_pb_button.et_pb_button.et_pb_button,
-a.more-link {
+.et_pb_button.et_pb_button.et_pb_button, a.more-link {
   position: relative;
-  padding-left: 40px !important;
-  padding-right: 40px !important;
-}
-.et_pb_button.et_pb_button.et_pb_button::before, .et_pb_button.et_pb_button.et_pb_button::after,
-a.more-link::before,
-a.more-link::after {
-  display: block !important;
-  content: '';
-  position: absolute;
-  top: 0;
-  border: 20px solid transparent;
-  opacity: 1;
-  margin: 0;
-}
-.et_pb_button.et_pb_button.et_pb_button::before,
-a.more-link::before {
-  left: 0;
-  border-left-color: #D57027;
-}
-.et_pb_button.et_pb_button.et_pb_button::after,
-a.more-link::after {
-  right: 0;
-  border-right-color: #D57027;
-}
-.et_pb_button.et_pb_button.et_pb_button:hover, .et_pb_button.et_pb_button.et_pb_button:focus, .et_pb_button.et_pb_button.et_pb_button:active,
-a.more-link:hover,
-a.more-link:focus,
-a.more-link:active {
-  box-shadow: 0.08em 0.08em 0.6em rgba(0, 0, 0, 0.4);
-}
-.et_pb_button.et_pb_button.et_pb_button:hover::before, .et_pb_button.et_pb_button.et_pb_button:hover::after, .et_pb_button.et_pb_button.et_pb_button:focus::before, .et_pb_button.et_pb_button.et_pb_button:focus::after, .et_pb_button.et_pb_button.et_pb_button:active::before, .et_pb_button.et_pb_button.et_pb_button:active::after,
-a.more-link:hover::before,
-a.more-link:hover::after,
-a.more-link:focus::before,
-a.more-link:focus::after,
-a.more-link:active::before,
-a.more-link:active::after {
-  display: block !important;
-  opacity: 0;
-}
-.et_pb_button.et_pb_button.et_pb_button.invest_button,
-a.more-link.invest_button {
-  display: inline-block;
-}
-.et_pb_button.et_pb_button.et_pb_button.invest_button, .et_pb_button.et_pb_button.et_pb_button.invest_button:hover, .et_pb_button.et_pb_button.et_pb_button.invest_button:active, .et_pb_button.et_pb_button.et_pb_button.invest_button:focus,
-a.more-link.invest_button,
-a.more-link.invest_button:hover,
-a.more-link.invest_button:active,
-a.more-link.invest_button:focus {
-  background: #72C075 !important;
-  border: 3px solid #54A352 !important;
-  color: #000 !important;
-}
-.et_pb_button.et_pb_button.et_pb_button.invest_button::before,
-a.more-link.invest_button::before {
-  border-left-color: #54A352;
-}
-.et_pb_button.et_pb_button.et_pb_button.invest_button::after,
-a.more-link.invest_button::after {
-  border-right-color: #54A352;
-}
-
-.et-pb-arrow-next, .et-pb-arrow-prev {
+  padding-left: 40px;
+  padding-right: 40px;
+  background: #FECF3D;
+  color: #000;
+  border: 0;
+  border-bottom: 5px solid #DFB12E;
+  font-family: "Montserrat", Montserrat, sans-serif;
+  text-transform: uppercase;
   text-decoration: none;
 }
 

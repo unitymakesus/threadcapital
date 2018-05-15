@@ -164,9 +164,9 @@ add_filter( 'et_project_posttype_args', function( $args ) {
  * Change WordPress email sender name and email
  */
 add_filter( 'wp_mail_from_name', function( $original_email_from ) {
-  return 'NC Rural Center';
+  return 'Thread Capital';
 });
 
 add_filter('wp_mail_from', function($original_email_from) {
-  return 'wordpress@ncruralcenter.org';
+  return 'wordpress@threadcap.org';
 });

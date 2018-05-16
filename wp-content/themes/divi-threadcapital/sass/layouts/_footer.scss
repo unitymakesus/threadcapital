@@ -10,6 +10,7 @@
   background-color: $color-blue-threadcap;
   position: relative;
   overflow: hidden;
+  padding: 75px 0 0;
 
   .footer-widget {
     margin: 0 !important;
@@ -37,15 +38,6 @@
       max-width: 200px;
     }
   }
-}
-
-.footer-arc {
-  width: 100%;
-  background: $color-blue-threadcap;
-  height: 100px;
-  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-  position: relative;
-  top: 1px;
 }
 
 #footer-widgets {

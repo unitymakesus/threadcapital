@@ -1,0 +1,21 @@
+#main-footer::before {
+  content: '';
+  background: linear-gradient(to left top, transparent 0%, transparent 50%, white 50%);
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100px;
+}
+
+#main-footer::after {
+  content: '';
+  background: linear-gradient(to right top, transparent 0%, transparent 50%, white 50%);
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100px;
+}

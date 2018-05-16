@@ -670,6 +670,28 @@ a:hover, a:focus, a:active {
     height: 75px;
   }
 }
+#main-footer::before {
+  content: '';
+  background: linear-gradient(to left top, transparent 0%, transparent 50%, white 50%);
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100px;
+}
+
+#main-footer::after {
+  content: '';
+  background: linear-gradient(to right top, transparent 0%, transparent 50%, white 50%);
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100px;
+}
+
 @media (max-width: 980px) {
   #main-header .container {
     width: 90%;
@@ -914,6 +936,7 @@ a:hover, a:focus, a:active {
   background-color: #094468;
   position: relative;
   overflow: hidden;
+  padding: 75px 0 0;
 }
 #main-footer .footer-widget {
   margin: 0 !important;
@@ -932,15 +955,6 @@ a:hover, a:focus, a:active {
 }
 #main-footer .footer-widget .widget_media_image {
   max-width: 200px;
-}
-
-.footer-arc {
-  width: 100%;
-  background: #094468;
-  height: 100px;
-  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-  position: relative;
-  top: 1px;
 }
 
 #footer-widgets {
@@ -1404,7 +1418,7 @@ a:hover, a:focus, a:active {
 }
 .hero h1 {
   padding-left: 10%;
-  width: 40%;
+  width: 50%;
 }
 .hero .et_pb_header_content_wrapper {
   position: absolute;
@@ -1427,13 +1441,16 @@ a:hover, a:focus, a:active {
 .callout-box div:first-of-type {
   padding: 0;
 }
-.callout-box .callout-arc {
+.callout-box .et_pb_code {
+  position: relative;
+}
+.callout-box .et_pb_code .callout-arc {
   width: 100%;
   background: #094468;
   height: 100px;
-  clip-path: polygon(50% 60%, 0% 100%, 100% 100%);
+  clip-path: polygon(50% 15%, 0% 100%, 100% 100%);
   position: absolute;
-  bottom: 16px;
+  top: -115px;
 }
 
 .et_pb_row_0.et_pb_row {
@@ -1495,11 +1512,6 @@ a:hover, a:focus, a:active {
 }
 .et_pb_section.what-we-do .et_pb_row_fullwidth .et_pb_text_4 a::before {
   background: rgba(190, 141, 1, 0.3);
-}
-@media (max-width: 767px) {
-  .et_pb_section.what-we-do .et_pb_row_fullwidth .et_pb_column {
-    width: 100%;
-  }
 }
 
 @media (max-width: 980px) {
@@ -1578,6 +1590,10 @@ a:hover, a:focus, a:active {
   }
   .hero h1 {
     padding-left: 0;
+    width: 100%;
+  }
+
+  .et_pb_column {
     width: 100%;
   }
 }

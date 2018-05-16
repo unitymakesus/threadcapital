@@ -18,7 +18,7 @@
 
   h1 {
     padding-left: 10%;
-    width: 40%;
+    width: 50%;
   }
 
   .et_pb_header_content_wrapper {
@@ -48,13 +48,17 @@
     padding: 0;
   }
 
-  .callout-arc {
-    width: 100%;
-    background: $color-blue-threadcap;
-    height: 100px;
-    clip-path: polygon(50% 60%, 0% 100%, 100% 100%);
-    position: absolute;
-    bottom: 16px;
+  .et_pb_code {
+    position: relative;
+
+    .callout-arc {
+      width: 100%;
+      background: #094468;
+      height: 100px;
+      clip-path: polygon(50% 15%, 0% 100%, 100% 100%);
+      position: absolute;
+      top: -115px;
+    }
   }
 }
 
@@ -131,12 +135,6 @@
     // Research
     .et_pb_text_4 a::before {
       background: rgba($color-yellow-a11y,0.3);
-    }
-
-    @media (max-width: 767px) {
-      .et_pb_column {
-        width: 100%;
-      }
     }
   }
 }
@@ -237,5 +235,9 @@
       padding-left: 0;
       width: 100%;
     }
+  }
+
+  .et_pb_column {
+    width: 100%;
   }
 }

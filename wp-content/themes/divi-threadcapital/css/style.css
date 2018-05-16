@@ -620,10 +620,18 @@ a:hover, a:focus, a:active {
 .process-graphic {
   background: #358734;
   display: flex;
-  align-items: center;
   justify-content: space-between;
   text-align: center;
-  padding: 50px;
+  padding: 30px 0;
+}
+.process-graphic article, .process-graphic .dash {
+  flex: 2;
+  width: 0;
+}
+.process-graphic .dash {
+  border-top: 9px dashed white;
+  opacity: .5;
+  align-self: center;
 }
 .process-graphic img {
   height: 125px;
@@ -631,6 +639,11 @@ a:hover, a:focus, a:active {
 .process-graphic p {
   color: #FFF;
   font-size: 20px;
+  padding-top: 15px;
+}
+
+.graphic-row .et_pb_row {
+  min-width: 100%;
 }
 
 @media (max-width: 980px) {
@@ -652,8 +665,8 @@ a:hover, a:focus, a:active {
   transition: color .2s ease;
 }
 #top-header a:hover, #top-header a:active, #top-header a:focus {
-  color: #237BC0;
-  text-decoration: underline;
+  color: #094468;
+  text-decoration: none;
 }
 
 #et-secondary-menu > ul > li > a {
@@ -691,7 +704,7 @@ a:hover, a:focus, a:active {
   text-align: left;
 }
 #et-secondary-menu li.menu-item-has-children ul.sub-menu a:hover, #et-secondary-menu li.menu-item-has-children ul.sub-menu a:focus, #et-secondary-menu li.menu-item-has-children ul.sub-menu a:active {
-  text-decoration: underline;
+  text-decoration: none;
   background: none;
   opacity: 1;
 }
@@ -722,53 +735,30 @@ a:hover, a:focus, a:active {
 #top-menu li:hover::before, #top-menu li:active::before, #top-menu li:focus::before, #mobile_menu li:hover::before, #mobile_menu li:active::before, #mobile_menu li:focus::before {
   opacity: 1;
 }
-#top-menu li.menu-item-143 .sub-menu, #mobile_menu li.menu-item-143 .sub-menu {
-  border: 2px solid #2686C7;
+#top-menu li.menu-item-39 .sub-menu, #mobile_menu li.menu-item-39 .sub-menu {
+  border: 2px solid #094468;
 }
-#top-menu li.menu-item-143::before, #mobile_menu li.menu-item-143::before {
-  border-bottom-color: #2686C7;
+#top-menu li.menu-item-39::before, #mobile_menu li.menu-item-39::before {
+  border-bottom-color: #094468;
 }
-#top-menu li.menu-item-143.current-menu-ancestor > a, #mobile_menu li.menu-item-143.current-menu-ancestor > a {
-  color: #237BC0;
+
+.et_header_style_left #et-top-navigation nav > ul > li > a {
+  padding: 20px;
 }
-#top-menu li.menu-item-143.current-menu-ancestor .sub-menu .current-menu-item > a, #mobile_menu li.menu-item-143.current-menu-ancestor .sub-menu .current-menu-item > a {
-  color: #237BC0;
+
+#top-menu > li:last-child {
+  padding-right: 22px;
 }
-#top-menu li.menu-item-144 .sub-menu, #mobile_menu li.menu-item-144 .sub-menu {
-  border: 2px solid #D57027;
+
+.nav-cta {
+  background: #358734;
 }
-#top-menu li.menu-item-144::before, #mobile_menu li.menu-item-144::before {
-  border-bottom-color: #D57027;
+.nav-cta a {
+  color: #FFF;
 }
-#top-menu li.menu-item-144.current-menu-ancestor > a, #mobile_menu li.menu-item-144.current-menu-ancestor > a {
-  color: #BD5B0D;
-}
-#top-menu li.menu-item-144.current-menu-ancestor .sub-menu .current-menu-item > a, #mobile_menu li.menu-item-144.current-menu-ancestor .sub-menu .current-menu-item > a {
-  color: #BD5B0D;
-}
-#top-menu li.menu-item-145 .sub-menu, #mobile_menu li.menu-item-145 .sub-menu {
-  border: 2px solid #54A352;
-}
-#top-menu li.menu-item-145::before, #mobile_menu li.menu-item-145::before {
-  border-bottom-color: #54A352;
-}
-#top-menu li.menu-item-145.current-menu-ancestor > a, #mobile_menu li.menu-item-145.current-menu-ancestor > a {
-  color: #358734;
-}
-#top-menu li.menu-item-145.current-menu-ancestor .sub-menu .current-menu-item > a, #mobile_menu li.menu-item-145.current-menu-ancestor .sub-menu .current-menu-item > a {
-  color: #358734;
-}
-#top-menu li.menu-item-146 .sub-menu, #mobile_menu li.menu-item-146 .sub-menu {
-  border: 2px solid #DFB12E;
-}
-#top-menu li.menu-item-146::before, #mobile_menu li.menu-item-146::before {
-  border-bottom-color: #DFB12E;
-}
-#top-menu li.menu-item-146.current-menu-ancestor > a, #mobile_menu li.menu-item-146.current-menu-ancestor > a {
-  color: #BE8D01;
-}
-#top-menu li.menu-item-146.current-menu-ancestor .sub-menu .current-menu-item > a, #mobile_menu li.menu-item-146.current-menu-ancestor .sub-menu .current-menu-item > a {
-  color: #BE8D01;
+
+#top-menu li.current-menu-item > a {
+  color: #094468;
 }
 
 #top-menu .sub-menu, #mobile_menu .sub-menu {
@@ -792,7 +782,7 @@ a:hover, a:focus, a:active {
   border-bottom: 0;
 }
 #top-menu .sub-menu li a:hover, #top-menu .sub-menu li a:focus, #top-menu .sub-menu li a:active, #mobile_menu .sub-menu li a:hover, #mobile_menu .sub-menu li a:focus, #mobile_menu .sub-menu li a:active {
-  text-decoration: underline;
+  text-decoration: none;
   background: none;
   opacity: 1;
 }

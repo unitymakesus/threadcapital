@@ -20,8 +20,8 @@
   transition: color .2s ease;
 
   &:hover, &:active, &:focus {
-    color: $color-blue-a11y;
-    text-decoration: underline;
+    color: $color-blue-threadcap;
+    text-decoration: none;
   }
 }
 
@@ -68,7 +68,7 @@
       text-align: left;
 
       &:hover, &:focus, &:active {
-        text-decoration: underline;
+        text-decoration: none;
         background: none;
         opacity: 1;
       }
@@ -111,94 +111,37 @@
     }
   }
 
-  // Engagement (Blue)
-  &.menu-item-143 {
+  // Contact (Blue)
+  &.menu-item-39 {
     .sub-menu {
-      border: 2px solid $color-blue-dark;
+      border: 2px solid $color-blue-threadcap;
     }
 
     &::before {
-      border-bottom-color: $color-blue-dark;
-    }
-
-    &.current-menu-ancestor {
-      & > a {
-        color: $color-blue-a11y;
-      }
-
-      .sub-menu {
-        .current-menu-item > a {
-          color: $color-blue-a11y;
-        }
-      }
+      border-bottom-color: $color-blue-threadcap;
     }
   }
-  // Leadership (Orange)
-  &.menu-item-144 {
-    .sub-menu {
-      border: 2px solid $color-orange-dark;
-    }
+}
 
-    &::before {
-      border-bottom-color: $color-orange-dark;
-    }
+.et_header_style_left #et-top-navigation nav>ul>li>a {
+  padding: 20px;
+}
 
-    &.current-menu-ancestor {
-      & > a {
-        color: $color-orange-a11y;
-      }
+#top-menu>li:last-child {
+    padding-right: 22px;
+}
 
-      .sub-menu {
-        .current-menu-item > a {
-          color: $color-orange-a11y;
-        }
-      }
-    }
+// CTA Nav Item
+.nav-cta {
+  background: $color-green-a11y;
+
+  a {
+    color: $color-white;
   }
-  // Lending (Green)
-  &.menu-item-145 {
-    .sub-menu {
-      border: 2px solid $color-green-dark;
-    }
+}
 
-    &::before {
-      border-bottom-color: $color-green-dark;
-    }
-
-    &.current-menu-ancestor {
-      & > a {
-        color: $color-green-a11y;
-      }
-
-      .sub-menu {
-        .current-menu-item > a {
-          color: $color-green-a11y;
-        }
-      }
-    }
-  }
-  // Research (Yellow)
-  &.menu-item-146 {
-    .sub-menu {
-      border: 2px solid $color-yellow-dark;
-    }
-
-    &::before {
-      border-bottom-color: $color-yellow-dark;
-    }
-
-    &.current-menu-ancestor {
-      & > a {
-        color: $color-yellow-a11y;
-      }
-
-      .sub-menu {
-        .current-menu-item > a {
-          color: $color-yellow-a11y;
-        }
-      }
-    }
-  }
+#top-menu li.current-menu-item>a {
+  color: $color-blue-threadcap;
 }
 
 #top-menu .sub-menu, #mobile_menu .sub-menu {
@@ -223,7 +166,7 @@
       border-bottom: 0;
 
       &:hover, &:focus, &:active {
-        text-decoration: underline;
+        text-decoration: none;
         background: none;
         opacity: 1;
       }

@@ -156,15 +156,21 @@ add_shortcode('process-graphic', function($atts) {
 				<p>Apply in Minutes</p>
 			</article>
 
+			<span class="dash"></span>
+
 			<article>
 				<img src="<?php bloginfo('stylesheet_directory'); ?>/images/graphic/connect.png" />
 				<p>Connect with Thread Capital team</p>
 			</article>
 
+			<span class="dash"></span>
+
 			<article>
 				<img src="<?php bloginfo('stylesheet_directory'); ?>/images/graphic/submit.png" />
 				<p>Submit Verification Documents</p>
 			</article>
+
+			<span class="dash"></span>
 
 			<article>
 				<img src="<?php bloginfo('stylesheet_directory'); ?>/images/graphic/funding.png" />

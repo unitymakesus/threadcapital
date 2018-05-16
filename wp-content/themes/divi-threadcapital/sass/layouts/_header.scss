@@ -6,6 +6,7 @@
   }
 }
 
+// Nav Container and Logo
 #main-header {
   box-shadow: none;
   padding-bottom: 30px;
@@ -13,6 +14,7 @@
 
 #logo {
   position: relative;
+  top: 14px;
 
   @media (max-width: 980px) {
     top: 0;

@@ -11,18 +11,6 @@
   position: relative;
   overflow: hidden;
 
-  // &::before {
-  //   content: '';
-  //   box-sizing: border-box;
-  //   border: 50vw solid transparent;
-  //   border-top-color: $color-white;
-  //   border-top-width: 100px;
-  //   width: 100%;
-  //   position: absolute;
-  //   top: 0;
-  //   left: 0;
-  //}
-
   .footer-widget {
     margin: 0 !important;
     width: 50%;
@@ -67,6 +55,10 @@
 
   .fwidget {
     margin-bottom: 0;
+  }
+
+  .footer-widget li:before {
+    border-width: 0;
   }
 
   @media (max-width: 767px) {

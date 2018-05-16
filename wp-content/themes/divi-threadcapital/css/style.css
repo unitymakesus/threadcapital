@@ -105,6 +105,10 @@ a:focus {
   }
 }
 
+body {
+  font-weight: normal;
+}
+
 .et_pb_text h2, .staff-list h2 {
   font-weight: normal;
   font-size: 2.3em;
@@ -663,7 +667,7 @@ a:hover, a:focus, a:active {
   .process-graphic .dash {
     border-left: 9px dashed white;
     border-top: none;
-    height: 150px;
+    height: 75px;
   }
 }
 @media (max-width: 980px) {
@@ -678,6 +682,7 @@ a:hover, a:focus, a:active {
 
 #logo {
   position: relative;
+  top: 14px;
 }
 @media (max-width: 980px) {
   #logo {
@@ -945,6 +950,9 @@ a:hover, a:focus, a:active {
 }
 #footer-widgets .fwidget {
   margin-bottom: 0;
+}
+#footer-widgets .footer-widget li:before {
+  border-width: 0;
 }
 @media (max-width: 767px) {
   #footer-widgets {
@@ -1387,26 +1395,22 @@ a:hover, a:focus, a:active {
   margin: 0 auto;
 }
 
-.hero {
-  height: 80vh;
-  position: relative;
-  color: #FFF;
+.hero .et_pb_fullwidth_header_container {
+  width: 100%;
 }
-.hero .hero-header {
-  position: absolute;
-  top: 20%;
-  left: 10%;
-  font-size: 3em;
-  line-height: 1.5em;
+.hero .header-content {
+  margin: 0;
+  padding: 0;
 }
-.hero .hero-text {
+.hero h1 {
+  padding-left: 10%;
+  width: 40%;
+}
+.hero .et_pb_header_content_wrapper {
   position: absolute;
   bottom: 0;
   background: #D57027;
-  padding: 40px 10%;
-  text-align: center;
-  font-size: 20px;
-  line-height: 1.5em;
+  padding: 25px 10%;
 }
 
 .callout-box {
@@ -1415,6 +1419,7 @@ a:hover, a:focus, a:active {
 }
 .callout-box h2 {
   color: #FFF;
+  text-transform: uppercase;
 }
 .callout-box .et_pb_text {
   padding: 10px 20px 30px;
@@ -1422,7 +1427,28 @@ a:hover, a:focus, a:active {
 .callout-box div:first-of-type {
   padding: 0;
 }
+.callout-box .callout-arc {
+  width: 100%;
+  background: #094468;
+  height: 100px;
+  clip-path: polygon(50% 60%, 0% 100%, 100% 100%);
+  position: absolute;
+  bottom: 16px;
+}
 
+.et_pb_row_0.et_pb_row {
+  display: flex;
+}
+
+@media (max-width: 980px) {
+  .et_pb_row_0.et_pb_row {
+    display: block;
+  }
+
+  .hero .et_pb_header_content_wrapper {
+    padding: 0;
+  }
+}
 .et_pb_section.what-we-do .et_pb_row_fullwidth {
   flex-wrap: wrap;
 }
@@ -1546,6 +1572,15 @@ a:hover, a:focus, a:active {
   display: none !important;
 }
 
+@media (max-width: 767px) {
+  .hero .header-content {
+    margin: 0 !important;
+  }
+  .hero h1 {
+    padding-left: 0;
+    width: 100%;
+  }
+}
 .person, .staff {
   clear: both;
   display: flex;

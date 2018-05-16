@@ -170,7 +170,7 @@ add_shortcode('process-graphic', function($atts) {
 				<p>Submit Verification Documents</p>
 			</article>
 
-			<span class="dash"></span>
+			<div class="dash"></div>
 
 			<article>
 				<img src="<?php bloginfo('stylesheet_directory'); ?>/images/graphic/funding.png" />

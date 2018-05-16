@@ -6,6 +6,11 @@
   }
 }
 
+#main-header {
+  box-shadow: none;
+  padding-bottom: 30px;
+}
+
 #logo {
   position: relative;
 
@@ -136,8 +141,12 @@
   background: $color-green-a11y;
 
   a {
-    color: $color-white;
+    color: white !important;
   }
+}
+
+.et_header_style_left #et-top-navigation nav>ul>li>a, .et_header_style_split #et-top-navigation nav>ul>li>a {
+  padding-bottom: 20px !important;
 }
 
 #top-menu li.current-menu-item>a {

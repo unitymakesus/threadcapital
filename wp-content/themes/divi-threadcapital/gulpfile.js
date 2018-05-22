@@ -6,7 +6,7 @@ var reload      = browserSync.reload;
 // Start the server
 gulp.task('browser-sync', function() {
     browserSync.init({
-        proxy: "threadcapital.test"
+        proxy: "threadcapital.local"
     });
 });
 

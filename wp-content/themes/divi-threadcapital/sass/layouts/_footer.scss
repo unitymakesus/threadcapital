@@ -22,14 +22,14 @@
     &:nth-child(1) {
     }
 
-    &:nth-child(2) {
+    &:nth-child(3) {
       text-align: right;
+      justify-content: flex-end;
     }
 
     &.last {
       .et_pb_widget {
         float: none;
-        text-align: right;
         margin: 0;
       }
     }
@@ -44,6 +44,14 @@
   display: flex;
   justify-content: space-around;
   padding: 30px;
+
+  a, .footer-widget li a {
+    text-decoration: underline;
+
+    &:hover, &:focus, &:active {
+      color: $color-green-light !important;
+    }
+  }
 
   .fwidget {
     margin-bottom: 0;
@@ -136,8 +144,8 @@
 [class*="icon-"] {
   position: relative;
   overflow: hidden;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   display: inline-block;
   text-indent: -100em;
   color: $color-orange-dark !important;
@@ -151,6 +159,7 @@
     top: 0;
     left: 0;
     background-repeat: no-repeat;
+    background-size: contain;
   }
 }
 

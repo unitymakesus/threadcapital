@@ -715,14 +715,31 @@ a:hover, a:focus, a:active {
 #top-header a {
   text-decoration: none;
   transition: color .2s ease;
+  text-transform: uppercase;
 }
 #top-header a:hover, #top-header a:active, #top-header a:focus {
-  color: #094468;
-  text-decoration: none;
+  color: #FFF;
+  text-decoration: underline;
+}
+
+.ncrc-logo {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-image: url("../images/ncrc-mark-white.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  vertical-align: middle;
+}
+
+#et-secondary-menu {
+  float: none;
+  margin: 0 auto;
+  text-align: center;
 }
 
 #et-secondary-menu > ul > li > a {
-  padding-bottom: 15px;
+  padding-bottom: 9px;
 }
 
 #et-secondary-menu li.menu-item-has-children::before {
@@ -806,6 +823,9 @@ a:hover, a:focus, a:active {
   background: #358734;
 }
 .nav-cta a {
+  color: white !important;
+}
+.et-fixed-header #top-menu .nav-cta a {
   color: white !important;
 }
 
@@ -1423,6 +1443,7 @@ a:hover, a:focus, a:active {
 .callout-box h2 {
   color: #FFF;
   text-transform: uppercase;
+  font-size: 35px;
 }
 .callout-box .et_pb_text {
   padding: 10px 20px 30px;

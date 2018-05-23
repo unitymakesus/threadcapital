@@ -25,15 +25,32 @@
 #top-header a {
   text-decoration: none;
   transition: color .2s ease;
+  text-transform: uppercase;
 
   &:hover, &:active, &:focus {
-    color: $color-blue-threadcap;
-    text-decoration: none;
+    color: $color-white;
+    text-decoration: underline;
   }
 }
 
+.ncrc-logo {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-image: url('../images/ncrc-mark-white.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  vertical-align: middle;
+}
+
+#et-secondary-menu {
+  float: none;
+  margin: 0 auto;
+  text-align: center;
+}
+
 #et-secondary-menu > ul > li > a {
-  padding-bottom: 15px;
+  padding-bottom: 9px;
 }
 
 #et-secondary-menu li.menu-item-has-children {
@@ -144,6 +161,10 @@
 
   a {
     color: white !important;
+
+    .et-fixed-header #top-menu & {
+      color: white !important;
+    }
   }
 }
 

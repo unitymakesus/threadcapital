@@ -5,31 +5,6 @@
   }
 }
 
-// hero box homepage
-.hero {
-  // .et_pb_fullwidth_header_container {
-  //   width: 100%;
-  // }
-  //
-  // .header-content {
-  //   margin: 0;
-  //   padding: 0;
-  // }
-  //
-  // h1 {
-  //   padding-left: 10%;
-  //   width: 50%;
-  // }
-
-  // .et_pb_header_content_wrapper {
-  //   position: absolute;
-  //   bottom: 0;
-  //   background: $color-orange-dark;
-  //   padding: 25px 10%;
-  // }
-}
-
-
 // callout boxes homepage
 .callout-box {
   background: $color-blue-threadcap;
@@ -39,6 +14,7 @@
     color: $color-white;
     text-transform: uppercase;
     font-size: 35px;
+    padding-bottom: 0;
   }
 
   .et_pb_text {
@@ -49,16 +25,18 @@
     padding: 0;
   }
 
-  .et_pb_code {
+  .et_pb_image {
     position: relative;
 
-    .callout-arc {
+    &::after {
+      content: '';
       width: 100%;
       background: #094468;
       height: 100px;
-      clip-path: polygon(50% 40%, 0% 100%, 100% 100%);
+      clip-path: polygon(50% 60%, 0% 100%, 100% 100%);
       position: absolute;
-      top: -115px;
+      left: 0;
+      bottom: -1px;
     }
   }
 }

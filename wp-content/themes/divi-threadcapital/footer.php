@@ -41,8 +41,7 @@ if ( ! is_page_template( 'page-template-blank.php' ) ) : ?>
 							</a>
 						</div>
 						<div class="right">
-							<a href="/privacy-policy/">Privacy Policy</a> |
-							<a href="/terms-and-conditions/"> Terms and Conditions</a>
+							<a href="/privacy-policy/">Privacy Policy</a>
 						</div>
 					</div>	<!-- .container -->
 				</div>

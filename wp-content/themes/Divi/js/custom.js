@@ -35,7 +35,7 @@
 		$et_top_cart = $('#et-secondary-menu a.et-cart-info');
 
 	// We need to check first to see if we are on a woocommerce single product.
-	if ( $("body").hasClass("woocommerce") && $("body").hasClass("single-product") && $(".woocommerce-product-gallery").length > 0 ) {
+	if ( $(".woocommerce .woocommerce-product-gallery").length > 0 ) {
 		// get the gallery container.
 		var gal = $(".woocommerce-product-gallery")[0];
 
@@ -883,9 +883,9 @@
 
 						// Fullscreen section at the first row requires specific adjustment
 						if ( $et_pb_first_row.is( '.et_pb_fullwidth_section' ) ){
-							$waypoint_selector = $et_pb_first_row.children('.et_pb_module');
+							$waypoint_selector = $et_pb_first_row.children('.et_pb_module:visible:first');
 						} else {
-							$waypoint_selector = $et_pb_first_row.find('.et_pb_row');
+							$waypoint_selector = $et_pb_first_row.find('.et_pb_row:visible:first');
 						}
 
 						// Fallback for a less likely but possible scenario: a) fullwidth section

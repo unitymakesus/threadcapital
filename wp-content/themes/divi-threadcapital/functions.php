@@ -174,7 +174,7 @@ add_shortcode('process-graphic', function($atts) {
 
 			<article>
 				<img src="<?php bloginfo('stylesheet_directory'); ?>/images/graphic/funding.png" />
-				<p>Recive Funding</p>
+				<p>Receive Funding</p>
 			</article>
 		</div>
 

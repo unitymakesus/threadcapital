@@ -127,7 +127,10 @@ function et_fb_backend_helpers() {
 		$layout_scope = et_fb_get_layout_term_slug( $post_id, 'scope' );
 	}
 
-	$google_fonts = array_merge( array( 'Default' => array() ), et_builder_get_google_fonts() );
+	$use_google_fonts = et_core_use_google_fonts();
+	$websafe_fonts = et_builder_get_websafe_fonts();
+	$default_fonts_set = array_merge( array( 'Default' => array() ), $websafe_fonts );
+	$google_fonts = $use_google_fonts ? array_merge( $default_fonts_set, et_builder_get_google_fonts() ) : $default_fonts_set;
 	$custom_user_fonts = et_builder_get_custom_fonts();
 	$current_user = wp_get_current_user();
 	$current_url  = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
@@ -242,8 +245,10 @@ function et_fb_backend_helpers() {
 		 */
 		'getTaxonomyLabels'            => apply_filters( 'et_fb_taxonomy_labels', et_fb_get_taxonomy_labels() ),
 		'googleAPIKey'                 => et_pb_is_allowed( 'theme_options' ) ? get_option( 'et_google_api_settings' ) : '',
+		'useGoogleFonts'               => $use_google_fonts,
 		'googleFontsList'              => array_keys( $google_fonts ),
 		'googleFonts'                  => $google_fonts,
+		'websafeFonts'                 => $websafe_fonts,
 		'customFonts'                  => $custom_user_fonts,
 		'removedFonts'                 => et_builder_old_fonts_mapping(),
 		'allFontWeights'               => et_builder_get_font_weight_list(),
@@ -315,8 +320,8 @@ function et_fb_backend_helpers() {
 				'number' => $modules_defaults['number'],
 			),
 			'et_pb_signup'            => array(
-				'title'   => $modules_defaults['title'],
-				'content' => $modules_defaults['body'],
+				'title'       => $modules_defaults['title'],
+				'description' => $modules_defaults['body'],
 			),
 			'et_pb_image'             => array(
 				'src' => $modules_defaults['image']['landscape'],
@@ -417,6 +422,8 @@ function et_fb_backend_helpers() {
 		),
 		'saveModuleLibraryCategories'  => et_fb_prepare_library_cats(),
 		'emailNameFieldOnlyProviders'  => array_keys( ET_Builder_Module_Signup::providers()->names_by_slug( 'all', 'name_field_only' ) ),
+		'emailPredefinedCustomFields'  => ET_Core_API_Email_Providers::instance()->custom_fields_data(),
+		'emailCustomFieldProviders'    => array_keys( ET_Builder_Module_Signup::providers()->names_by_slug( 'all', 'custom_fields' ) ),
 		'columnSettingFields'          => array(
 			'general' => array(
 				'bg_img_%s' => array(
@@ -1132,6 +1139,7 @@ function et_fb_backend_helpers() {
 			'tabs'                     => array(
 				'general'              => esc_html__( 'Content', 'et_builder' ),
 				'design'               => esc_html__( 'Design', 'et_builder' ),
+				'advanced'             => esc_html__( 'Design', 'et_builder' ),
 				'css'                  => esc_html__( 'Advanced', 'et_builder' ),
 			),
 			'additionalButton'         => array(
@@ -1162,10 +1170,15 @@ function et_fb_backend_helpers() {
 			),
 			'cssText'                  => esc_html__( 'CSS', 'et_builder'),
 			'background'               => array(
-				'addColor'    => esc_html__( 'Add Background Color', 'et_builder' ),
-				'addGradient' => esc_html__( 'Add Background Gradient', 'et_builder' ),
-				'addImage'    => esc_html__( 'Add Background Image', 'et_builder' ),
-				'addVideo'    => esc_html__( 'Add Background Video', 'et_builder' ),
+				'addColor'       => esc_html__( 'Add Background Color', 'et_builder' ),
+				'addGradient'    => esc_html__( 'Add Background Gradient', 'et_builder' ),
+				'addImage'       => esc_html__( 'Add Background Image', 'et_builder' ),
+				'addVideo'       => esc_html__( 'Add Background Video', 'et_builder' ),
+				'color'          => esc_html__( 'Background Color', 'et_builder' ),
+				'gradient'       => esc_html__( 'Background Gradient', 'et_builder' ),
+				'gradientColors' => esc_html__( 'Background Gradient Colors', 'et_builder' ),
+				'image'          => esc_html__( 'Background Image', 'et_builder' ),
+				'video'          => esc_html__( 'Background Video', 'et_builder' ),
 			),
 			'responsiveTabs' => array(
 				'desktop' => esc_html__( 'Desktop', 'et_builder' ),
@@ -1180,6 +1193,8 @@ function et_fb_backend_helpers() {
 			'unlock'          => esc_html__( 'Unlock', 'et_builder' ),
 			'copy'            => esc_html__( 'Copy', 'et_builder' ),
 			'paste'           => esc_html__( 'Paste', 'et_builder' ),
+			'reset'           => esc_html__( 'Reset', 'et_builder' ),
+			'styles'          => esc_html__( 'Styles', 'et_builder' ),
 			'copyStyle'       => esc_html__( 'Copy Style', 'et_builder' ),
 			'pasteStyle'      => esc_html__( 'Paste Style', 'et_builder' ),
 			'disable'         => esc_html__( 'Disable', 'et_builder' ),
@@ -1195,6 +1210,10 @@ function et_fb_backend_helpers() {
 			'disableGlobal'   => esc_html__( 'Disable Global', 'et_builder' ),
 			'collapse'        => esc_html__( 'Collapse', 'et_builder' ),
 			'expand'          => esc_html__( 'Expand', 'et_builder' ),
+			'toggle'          => esc_html__( 'Toggle', 'et_builder' ),
+			'tab'             => esc_html__( 'Tab', 'et_builder' ),
+			'option'          => esc_html__( 'Option', 'et_builder' ),
+			'item'            => esc_html__( 'Item', 'et_builder' ),
 		),
 		'tooltips'            => array(
 			'insertModule'     => esc_html__( 'Insert Module', 'et_builder' ),

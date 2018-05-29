@@ -34,6 +34,8 @@
       background: #094468;
       height: 100px;
       clip-path: polygon(50% 60%, 0% 100%, 100% 100%);
+      -webkit-clip-path: polygon(50% 60%, 0% 100%, 100% 100%);
+      -ms-clip-path: polygon(50% 60%, 0% 100%, 100% 100%);
       position: absolute;
       left: 0;
       bottom: -1px;
@@ -218,5 +220,19 @@
 
   .et_pb_column {
     width: 100%;
+  }
+}
+
+@media screen and (min-width:0\0) and (min-resolution: +72dpi) {
+  .callout-box .et_pb_image::after {
+    content: '';
+    height: 0px !important;
+  }
+}
+
+@supports (-ms-accelerator:true) {
+  .callout-box .et_pb_image::after {
+    content: '';
+    height: 0px !important;
   }
 }

@@ -152,28 +152,28 @@ add_shortcode('process-graphic', function($atts) {
 	ob_start(); ?>
 		<div class="process-graphic">
 			<article>
-				<img src="<?php bloginfo('stylesheet_directory'); ?>/images/graphic/apply.png" />
+				<img src="<?php bloginfo('stylesheet_directory'); ?>/images/graphic/apply.png" / alt="Image of clock">
 				<p>Apply in Minutes</p>
 			</article>
 
 			<span class="dash"></span>
 
 			<article>
-				<img src="<?php bloginfo('stylesheet_directory'); ?>/images/graphic/connect.png" />
-				<p>Connect with Thread Capital team</p>
+				<img src="<?php bloginfo('stylesheet_directory'); ?>/images/graphic/connect.png" alt="Image of connected people"/>
+				<p>Connect with Thread Capital Team</p>
 			</article>
 
 			<span class="dash"></span>
 
 			<article>
-				<img src="<?php bloginfo('stylesheet_directory'); ?>/images/graphic/submit.png" />
+				<img src="<?php bloginfo('stylesheet_directory'); ?>/images/graphic/submit.png" alt="Image of submit document"/>
 				<p>Submit Verification Documents</p>
 			</article>
 
 			<div class="dash"></div>
 
 			<article>
-				<img src="<?php bloginfo('stylesheet_directory'); ?>/images/graphic/funding.png" />
+				<img src="<?php bloginfo('stylesheet_directory'); ?>/images/graphic/funding.png" alt="Image of money"/>
 				<p>Receive Funding</p>
 			</article>
 		</div>

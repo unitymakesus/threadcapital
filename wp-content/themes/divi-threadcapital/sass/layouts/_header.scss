@@ -17,6 +17,10 @@
   }
 }
 
+#top-header {
+  height: 40px;
+}
+
 #logo {
   position: relative;
   top: 14px;
@@ -313,5 +317,33 @@
     & > a::after {
       content: '\4b';
     }
+  }
+}
+
+.mobile_menu_toggle::after {
+  content: "Menu";
+  bottom: 9px;
+  position: relative;
+}
+
+@media (max-width: 767px) {
+  .et_parallax_bg {
+    background-position: right;
+  }
+
+  #mobile_menu li.menu-item-39 .sub-menu {
+    border: none;
+
+    a {
+      padding: 5px 20px !important;
+    }
+  }
+}
+
+.menu-item-336 {
+  background: $color-blue-threadcap;
+
+  a {
+    color: white !important;
   }
 }

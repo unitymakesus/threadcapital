@@ -109,6 +109,10 @@ body {
   font-weight: normal;
 }
 
+h1 {
+  text-shadow: 2px 2px black;
+}
+
 .et_pb_text h2, .staff-list h2 {
   font-weight: normal;
   font-size: 2.3em;
@@ -1029,6 +1033,21 @@ a:hover, a:focus, a:active {
   content: '\4b';
 }
 
+.mobile_menu_toggle::after {
+  content: "Menu";
+  bottom: 9px;
+  position: relative;
+}
+
+@media (max-width: 767px) {
+  .et_parallax_bg {
+    background-position: right;
+  }
+}
+.menu-item-336 {
+  background: #094468;
+}
+
 #main-footer .container, #footer-bottom .container {
   padding: 0 30px;
   width: 100%;
@@ -1080,6 +1099,9 @@ a:hover, a:focus, a:active {
 #footer-widgets .footer-widget li:before {
   border-width: 0;
 }
+#footer-widgets .textwidget p {
+  color: #FFF;
+}
 @media (max-width: 767px) {
   #footer-widgets {
     flex-wrap: wrap;
@@ -1100,6 +1122,12 @@ a:hover, a:focus, a:active {
   #footer-widgets .social-footer > div {
     display: inline-block;
   }
+}
+#footer-widgets .social-footer > div {
+  padding-bottom: 10px;
+}
+#footer-widgets .social-footer > div a {
+  margin-right: 10px;
 }
 @media (max-width: 550px) {
   #footer-widgets .footer-widget:nth-child(2) {

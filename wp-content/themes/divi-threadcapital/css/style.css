@@ -911,6 +911,9 @@ a:hover, a:focus, a:active {
 .nav-cta a {
   color: white !important;
 }
+.et-fixed-header #top-menu .nav-cta a {
+  color: white !important;
+}
 
 .et_header_style_left #et-top-navigation nav > ul > li > a, .et_header_style_split #et-top-navigation nav > ul > li > a {
   padding-bottom: 20px !important;

@@ -33,7 +33,7 @@ if ( ! is_page_template( 'page-template-blank.php' ) ) : ?>
 				<div id="footer-bottom">
 					<div class="container clearfix">
 						<div class="left">
-							&copy;<?php echo current_time('Y'); ?> Thread Capital, a subsidiary of the NC Rural Center
+							&copy;<?php echo current_time('Y'); ?> Thread Capital, a subsidiary of the <a href="https://www.ncruralcenter.org/" target="_blank" rel="noopener">NC Rural Center</a>
 						</div>
 						<div class="center">
 							<a href="https://www.unitymakes.us/" target="_blank" rel="noopener" class="unity-link">

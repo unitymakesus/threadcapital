@@ -182,6 +182,12 @@
     color: white!important;
 }
 
+@media only screen and (min-width: 981px) {
+  .et-fixed-header #top-menu li.current-menu-ancestor>a, .et-fixed-header #top-menu li.current-menu-item>a {
+      color: white!important;
+  }
+}
+
 #top-menu li.current-menu-item>a {
   color: $color-blue-threadcap;
 }

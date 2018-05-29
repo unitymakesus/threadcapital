@@ -48,12 +48,11 @@ jQuery(document).ready(function($) {
 
     // Apply Now Loading Spinner
     $('#frame-one366247050').ready(function () {
-      console.log('hi');
       $('#loadingMessage').css('display', 'none');
     });
 
-    // $('#frame-one366247050').load(function () {
+    $('#frame-one366247050').load(function () {
         $('#loadingMessage').css('display', 'none');
-    // });
+    });
 
 });

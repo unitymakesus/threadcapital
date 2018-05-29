@@ -97,3 +97,24 @@
     margin-bottom: 0;
   }
 }
+
+@media (max-width: 767px) {
+  .person, .staff {
+    display: block;
+  }
+
+  .single-staff .hentry {
+    width: 100%;
+    margin-left: 0px;
+  }
+  .person .col_3_8, .staff .col_3_8{
+    width: 100%;
+    order: 2;
+  }
+
+  .person .col_5_8, .staff .col_5_8 {
+    width: 100%;
+    padding-right: 0;
+    order: 1;
+  }
+}

@@ -321,6 +321,10 @@ h3 {
   box-shadow: 0.08em 0.08em 0.6em rgba(0, 0, 0, 0.4);
 }
 
+.page-id-399 .et_pb_column_1 {
+  padding-left: 0px;
+}
+
 a {
   text-decoration: underline;
   transition: color .2s ease;
@@ -779,6 +783,10 @@ a:hover, a:focus, a:active {
   }
 }
 
+#top-header {
+  height: 40px;
+}
+
 #logo {
   position: relative;
   top: 14px;
@@ -1043,9 +1051,19 @@ a:hover, a:focus, a:active {
   .et_parallax_bg {
     background-position: right;
   }
+
+  #mobile_menu li.menu-item-39 .sub-menu {
+    border: none;
+  }
+  #mobile_menu li.menu-item-39 .sub-menu a {
+    padding: 5px 20px !important;
+  }
 }
 .menu-item-336 {
   background: #094468;
+}
+.menu-item-336 a {
+  color: white !important;
 }
 
 #main-footer .container, #footer-bottom .container {
@@ -1122,6 +1140,9 @@ a:hover, a:focus, a:active {
   #footer-widgets .social-footer > div {
     display: inline-block;
   }
+}
+#footer-widgets .page-id-399 .et_pb_column_1 {
+  padding-left: 0px;
 }
 #footer-widgets .social-footer > div {
   padding-bottom: 10px;
@@ -1223,6 +1244,10 @@ a:hover, a:focus, a:active {
   .et_pb_fullwidth_header.et_pb_fullwidth_header .et_pb_fullwidth_header_container.center .header-content {
     width: 100%;
     max-width: 100%;
+  }
+
+  .et_pb_section {
+    padding: 10px 0;
   }
 }
 .et_pb_row {
@@ -1582,6 +1607,8 @@ a:hover, a:focus, a:active {
   background: #094468;
   height: 100px;
   clip-path: polygon(50% 60%, 0% 100%, 100% 100%);
+  -webkit-clip-path: polygon(50% 60%, 0% 100%, 100% 100%);
+  -ms-clip-path: polygon(50% 60%, 0% 100%, 100% 100%);
   position: absolute;
   left: 0;
   bottom: -1px;
@@ -1731,6 +1758,18 @@ a:hover, a:focus, a:active {
     width: 100%;
   }
 }
+@media screen and (min-width: 0\0) and (min-resolution: 72dpi) {
+  .callout-box .et_pb_image::after {
+    content: '';
+    height: 0px !important;
+  }
+}
+@supports (-ms-accelerator: true) {
+  .callout-box .et_pb_image::after {
+    content: '';
+    height: 0px !important;
+  }
+}
 .person, .staff {
   clear: both;
   display: flex;
@@ -1815,6 +1854,27 @@ a:hover, a:focus, a:active {
   margin-bottom: 0;
 }
 
+@media (max-width: 767px) {
+  .person, .staff {
+    display: block;
+  }
+
+  .single-staff .hentry {
+    width: 100%;
+    margin-left: 0px;
+  }
+
+  .person .col_3_8, .staff .col_3_8 {
+    width: 100%;
+    order: 2;
+  }
+
+  .person .col_5_8, .staff .col_5_8 {
+    width: 100%;
+    padding-right: 0;
+    order: 1;
+  }
+}
 .et_pb_widget_area, #sidebar {
   padding: 0;
 }

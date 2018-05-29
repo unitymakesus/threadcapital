@@ -1201,6 +1201,13 @@ a:hover, a:focus, a:active {
   width: 80%;
 }
 
+.timelineContainer .et_pb_row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 80%;
+}
+
 .page .page-title, .single .page-title, .archive .page-title {
   height: 266px;
   position: relative;

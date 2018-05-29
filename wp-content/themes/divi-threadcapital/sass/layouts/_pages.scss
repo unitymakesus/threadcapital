@@ -15,6 +15,15 @@
   width: 80%;
 }
 
+.timelineContainer {
+  .et_pb_row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 80%;
+  }
+}
+
 .page, .single, .archive {
   .page-title {
     height: 266px;

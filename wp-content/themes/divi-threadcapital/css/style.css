@@ -698,7 +698,7 @@ a:hover, a:focus, a:active {
 
 #loadingMessage {
   position: absolute;
-  top: 15px;
+  top: 0;
   left: 0;
   color: #358734;
   background: #FFF;

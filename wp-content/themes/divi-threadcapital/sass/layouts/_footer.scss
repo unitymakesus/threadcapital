@@ -71,6 +71,7 @@
 
   @media (max-width: 767px) {
     flex-wrap: wrap;
+    padding: 0;
 
     .footer-widget {
       &:nth-child(1) {
@@ -91,10 +92,6 @@
     .social-footer > div {
       display: inline-block;
     }
-  }
-
-  .page-id-399 .et_pb_column_1 {
-    padding-left: 0px;
   }
 
   .social-footer > div {

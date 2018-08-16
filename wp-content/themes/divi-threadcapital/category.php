@@ -10,9 +10,8 @@
 
       <?php
 			if ( have_posts() ) :
-				while ( have_posts() ) : the_post();
+				while ( have_pzosts() ) : the_post();
 					$post_format = et_pb_post_format(); ?>
-
 					<article id="post-<?php the_ID(); ?>" <?php post_class( 'et_pb_post' ); ?>>
 
 				<?php

@@ -14,7 +14,7 @@ get_header();
 					</div>
 				</div>
 
-				<div class="entry-content">
+				<div class="entry-content container">
 					<?php the_content(); ?>
 				</div> <!-- .entry-content -->
 			</article> <!-- .et_pb_post -->

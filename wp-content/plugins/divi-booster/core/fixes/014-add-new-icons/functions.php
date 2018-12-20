@@ -1,59 +1,6 @@
 <?php 
 if (!defined('ABSPATH')) { exit(); } // No direct access
 
-// === Common ===
-
-// Hook - visual builder <head> tag
-function db_vb_head() {
-	if (function_exists('et_fb_enabled') && et_fb_enabled()) {
-		do_action('db_vb_head');
-	}
-}
-add_action('wp_head', 'db_vb_head');
-
-// Hook - visual builder css
-function db_vb_css() { ?>
-	<style>
-	<?php do_action('db_vb_css'); ?> 
-	</style>
-<?php	
-}
-add_action('db_vb_head', 'db_vb_css');
-
-// Hook - user jquery
-function db_user_jquery() { ?>
-	jQuery(function($){
-		<?php do_action('db_user_jquery'); ?>
-	});
-<?php
-}
-add_action('wp_footer.js', 'db_user_jquery');
-
-// Hook - visual builder jquery
-function db_vb_jquery() { ?>
-	
-	/* Trigger: db_vb_builder_data_retrieved - fired after ajax load of builder data */
-	$(document).ajaxComplete(function(evt, xhr, options){ 
-		if (("data" in options) && (options['data'].indexOf("action=et_fb_retrieve_builder_data") >= 0)) {
-			$(document).trigger('db_vb_builder_data_retrieved');
-		}
-	});
-	
-	<?php do_action('db_vb_jquery'); ?> 
-
-<?php	
-}
-add_action('db_user_jquery', 'db_vb_jquery', 1000); // add after user jquery
-
-// Hook - admin css
-function db_admin_css() { ?>
-	<style>
-	<?php do_action('db_admin_css'); ?> 
-	</style>
-<?php	
-}
-add_action('admin_head', 'db_admin_css');
-
 // === Feature === 
 
 function wtfdivi014_register_icons($icons) {
@@ -67,7 +14,9 @@ function wtfdivi014_register_icons($icons) {
 	}
 	return $icons;
 }
-add_filter('et_pb_font_icon_symbols', 'wtfdivi014_register_icons');
+// Register the icons
+// - Added with priority of 50 so added after Divi Icon King which would drop them otherwise
+add_filter('et_pb_font_icon_symbols', 'wtfdivi014_register_icons', 50); 
 
 // add admin CSS
 function wtfdivi014_admin_css() { 
@@ -148,8 +97,10 @@ function db014_user_css($plugin) {
 		-webkit-transform: translate(-50%,-50%); -moz-transform: translate(-50%,-50%); -ms-transform: translate(-50%,-50%); transform: translate(-50%,-50%); 
 	}
 	
+	/* Hide extra icons */
 	.et_pb_gallery .et_pb_gallery_image .et_pb_inline_icon[data-icon^="wtfdivi014"]:before,
-	.et_pb_blog_grid .et_pb_inline_icon[data-icon^="wtfdivi014"]:before	{ 
+	.et_pb_blog_grid .et_pb_inline_icon[data-icon^="wtfdivi014"]:before,
+	.et_pb_image .et_pb_image_wrap .et_pb_inline_icon[data-icon^="wtfdivi014"]:before	{ 
 		display:none; 
 	}
 <?php 
@@ -167,11 +118,11 @@ function db014_user_js() {
 		if (!isset($option['urlmax'])) { $option['urlmax']=0; }
 		for($i=0; $i<=$option['urlmax']; $i++) {
 			if (!empty($option["url$i"])) { ?>
-				$('.et-pb-icon').filter(function(){ return $(this).text() == 'wtfdivi014-url<?php echo $i; ?>'; }).html('<img src="<?php esc_html_e(@$option["url$i"]); ?>"/>');
-				$('.et_pb_inline_icon').filter(function(){ return $(this).attr('data-icon') == 'wtfdivi014-url<?php echo $i; ?>'; }).html('<img class="db014_custom_hover_icon" src="<?php esc_html_e(@$option["url$i"]); ?>"/>');
+				$('.et-pb-icon').filter(function(){ return $(this).text() == 'wtfdivi014-url<?php echo $i; ?>'; }).toggleClass('db-custom-icon', true).html('<img src="<?php esc_html_e(@$option["url$i"]); ?>"/>');
+				$('.et_pb_inline_icon').filter(function(){ return $(this).attr('data-icon') == 'wtfdivi014-url<?php echo $i; ?>'; }).toggleClass('db-custom-icon', true).html('<img class="db014_custom_hover_icon" src="<?php esc_html_e(@$option["url$i"]); ?>"/>');
 			<?php } else { ?>
-				$('.et-pb-icon').filter(function(){ return $(this).text() == 'wtfdivi014-url<?php echo $i; ?>'; }).hide();
-				$('.et_pb_inline_icon').filter(function(){ return $(this).attr('data-icon') == 'wtfdivi014-url<?php echo $i; ?>'; }).hide();
+				$('.et-pb-icon').filter(function(){ return $(this).text() == 'wtfdivi014-url<?php echo $i; ?>'; }).toggleClass('db-custom-icon', true).hide();
+				$('.et_pb_inline_icon').filter(function(){ return $(this).attr('data-icon') == 'wtfdivi014-url<?php echo $i; ?>'; }).toggleClass('db-custom-icon', true).hide();
 			<?php
 			}
 		} 
@@ -200,3 +151,20 @@ function db014_visual_builder_js_admin() { ?>
 <?php 
 }
 add_action('db_vb_jquery', 'db014_visual_builder_js_admin');
+
+/* === Divi Icon King compatibility === */
+
+add_action('db_admin_jquery', 'wtfdivi014_add_divi_icon_king_filter_link');
+add_action('db_vb_jquery', 'wtfdivi014_add_divi_icon_king_filter_link');
+
+function wtfdivi014_add_divi_icon_king_filter_link() {
+	?>
+	// Add filter link if Divi Icon King used
+	$(document).on( 'click', '.dikg_icon_filter__btn', function() {
+		$('[data-icon^=wtfdivi]').attr('data-family', 'divi-booster').removeClass('gtm-divi-king-icon--elegant-themes').toggleClass('gtm-divi-king-icon--divi-booster', true);
+		if ($('.dikg_icon_filter__control_option[data-value=divi-booster]').length === 0) {
+			$('.dikg_icon_filter__control_option[data-value=elegant-themes]').after($('<span class="dikg_icon_filter__control_option dikg_icon_filter__control_option--inactive dikg_icon_filter__control_family dikg_icon_filter__control_option--active" data-value="divi-booster">Divi Booster</span>'));
+		}
+	});
+	<?php
+}

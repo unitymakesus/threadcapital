@@ -29,17 +29,20 @@ function dbmo_et_pb_slide_add_fields($fields) {
 				'toggle_slug'=>'main_content'
 			);
 		}
+		
+		// Add second button link option
+		if ($k === 'button_link') {
+			$new_fields['button_link_2'] = array(
+				'label' => db_divi_version('3.16', '>=')?'Button #2 Link URL':'Button #2 URL',
+				'type' => 'text',
+				'option_category' => 'basic_option',
+				'description' => 'Input a destination URL for the second slide button. '.divibooster_module_options_credit(),
+				'default' => '#',
+				'toggle_slug'=>db_divi_version('3.16', '>=')?'link_options':'link', //'link'
+			);
+		}
+		
 	}
-	
-	// Add second button link option
-	$new_fields['button_link_2'] = array(
-		'label' => 'Button #2 URL',
-		'type' => 'text',
-		'option_category' => 'basic_option',
-		'description' => 'Input a destination URL for the second slide button. '.divibooster_module_options_credit(),
-		'default' => '',
-		'toggle_slug'=>'link'
-	);
 	
 	// Add background link URL option
 	$new_fields['db_background_url'] = array(
@@ -54,34 +57,57 @@ function dbmo_et_pb_slide_add_fields($fields) {
 	return $new_fields;
 }
 
+// Tidy up URLs (adding http if missing, etc)
+function db_canonicalize_url($url) {
+	
+	// If scheme missing, add http
+	if (!parse_url($url, PHP_URL_SCHEME) && // No scheme
+		!in_array(substr($url, 0, 1), array('#', '/')) // Not hash or root / protocol relative
+	) {
+		$url = 'http://'.$url;
+	}
+	
+	return $url;
+}
+
 // Process slide options
 function db_pb_slide_filter_content($content, $args) {
+	
+	$args = wp_parse_args($args, array(
+		'button_text_2' => '',
+		'button_link_2' => '#'
+	));
 
 	// Add second button to slide
-	if (!empty($args['button_text_2'])) {
+	$button_2_text = $args['button_text_2'];
+	
+	if ($button_2_text !== '') {
 		
-		// Get url
-		if (!empty($args['button_link_2'])) { 
-			$url = $args['button_link_2'];
-			$url = ($parts=parse_url($url) and empty($parts['scheme']))?"http://$url":$url; // Add http if missing
-		} 
+		$url = db_canonicalize_url($args['button_link_2']);
 		
-		$content = preg_replace('#(<a href=".*?" class="et_pb_more_button et_pb_button">.*?</a>)#', '\\1<a '.((isset($url))?'href="'.esc_attr($url).'"':'').' class="et_pb_more_button et_pb_button db_pb_button_2">'.esc_html($args['button_text_2']).'</a>', $content); // Old format
-		$content = preg_replace('#(<a class="et_pb_button et_pb_more_button" href=".*?">.*?</a>)#', '\\1<a class="et_pb_button et_pb_more_button db_pb_button_2" '.((isset($url))?'href="'.esc_attr($url).'"':'').'>'.esc_html($args['button_text_2']).'</a>', $content); // New format
+		// Add button - old Divi markup
+		$content = preg_replace(
+			'#(<a href=".*?" class="(et_pb_more_button[^"]+et_pb_button[^"]*)">.*?</a>)#', 
+			'\\1<a href="'.esc_attr($url).'" class="\\2 db_pb_button_2">'.esc_html($button_2_text).'</a>', 
+			$content); 
+			
+		// Add button - new Divi markup	
+		$content = preg_replace(
+			'#(<a class="(et_pb_button[^"]+et_pb_more_button[^"]*)" href=".*?">.*?</a>)#', 
+			'\\1<a class="\\2 db_pb_button_2" href="'.esc_attr($url).'">'.esc_html($button_2_text).'</a>',
+			$content); 
 	}
 	
 	// Make slide background clickable link
 	if (!empty($args['db_background_url'])) {
 		 
-		$url = $args['db_background_url'];
-		$url = ($parts=parse_url($url) and empty($parts['scheme']) and $args['db_background_url'][0]!='/' and $args['db_background_url'][0]!='#')?"http://$url":$url; // Add http if missing 
+		$url = db_canonicalize_url($args['db_background_url']);
 		
 		// Add jquery to make correct slide clickable
 		preg_match('#div class="et_pb_slide\b[^"]*?\b(et_pb_slide_\d+)\b#', $content, $m);
 
 		if (!empty($m[1])) {
 			
-			//$content.='<script>jQuery(function($){$(".'.esc_html($m[1]).'").click(function(){document.location="'.esc_attr($url).'";});});</script>';
 			$slide = esc_html($m[1]);
 			$url = esc_attr($url);
 			$content.=<<<END
@@ -99,7 +125,6 @@ jQuery(function($){
 </script>
 <style>.$slide:hover{cursor:pointer;}</style>
 END;
-			//$content.='<style>.'.esc_html($m[1]).':hover{cursor:pointer;}</style>';
 		}
 	
 	}

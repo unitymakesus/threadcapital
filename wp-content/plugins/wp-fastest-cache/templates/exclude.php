@@ -453,6 +453,9 @@
 			//self.add_item(new Date().getTime(), {"prefix" : "startwith", "content" : "wp-content", "editable" : false});
 			self.add_item(new Date().getTime(), {"type" : "page", "prefix" : "startwith", "content" : "wp-admin", "editable" : false});
 			self.add_item(new Date().getTime(), {"type" : "useragent", "prefix" : "contain", "content" : "facebookexternalhit", "editable" : false});
+
+			self.add_item(new Date().getTime(), {"type" : "useragent", "prefix" : "contain", "content" : "LinkedInBot", "editable" : false});
+			
 			self.add_item(new Date().getTime(), {"type" : "useragent", "prefix" : "contain", "content" : "WhatsApp", "editable" : false});
 
 

@@ -63,10 +63,9 @@ function db004_user_css($plugin) { ?>
 }
 add_action('wp_head.css', 'db004_user_css');
 
-
 function db004_user_js($plugin) { ?>
 jQuery(function($){
-	$("#wtfdivi004-page-start-img").prependTo($("body")).show();
+	$("#wtfdivi004-page-start-img").prependTo($("body")).show();	
 });
 <?php 
 }
@@ -79,3 +78,39 @@ function db004_user_footer($plugin) {
 <?php 
 }
 add_action('wp_footer.txt', 'db004_user_footer');
+
+// === Handle image link ===
+
+function db004_add_link_to_img($plugin) { 
+
+	list($name, $option) = $plugin->get_setting_bases(__FILE__);
+	
+	if (empty($option['linkurl'])) { return; }
+
+	$url = $option['linkurl'];
+	
+	// Append protocol if missing
+	if (!preg_match('#^(http:|https:|tel:|skype:|/)#', $url)) { 
+		$url = "http://$url"; 
+	}
+	
+	// Apply the link
+	?>
+	jQuery(function($){
+		$("#wtfdivi004-page-start-img").click(function(){
+			window.location.href = "<?php esc_attr_e($url); ?>";
+		});
+	});
+	<?php 
+}
+add_action('wp_footer.js', 'db004_add_link_to_img');
+
+function db004_apply_link_css($plugin) { 
+	list($name, $option) = $plugin->get_setting_bases(__FILE__);
+	if (empty($option['linkurl'])) { return; }
+	
+	?>
+	#wtfdivi004-page-start-img:hover { cursor: pointer; }
+	<?php 
+}
+add_action('wp_head.css', 'db004_apply_link_css');

@@ -16,7 +16,8 @@
                         "png",
                         "svg",
                         "ttf",
-                        "woff"
+                        "woff",
+                        "woff2"
                         );
 
         foreach ($types as $key => $value) {

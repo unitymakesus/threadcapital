@@ -1,5 +1,9 @@
 <?php // Core plugin framework
 
+// === Load the functions and hooks ===
+include(dirname(__FILE__).'/functions.php'); 
+include(dirname(__FILE__).'/hooks/index.php');
+
 // === Load the core plugin class ===
 include(dirname(__FILE__).'/wtfplugin_1_0.class.php');
 

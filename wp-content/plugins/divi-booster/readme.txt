@@ -3,8 +3,8 @@ Contributors: danmossop
 Donate link: 
 Tags: divi theme, elegant themes
 Requires at least: 3.0
-Tested up to: 4.9.4
-Stable tag: 2.7.2
+Tested up to: 4.9.8
+Stable tag: 2.7.9
 
 Enhancements to the Divi Theme by Elegant Themes, including bug fixes and extra configuration options.
 
@@ -51,6 +51,32 @@ The Divi Booster plugin is an independent product which is not associated with, 
 To follow...
 
 == Changelog ==
+
+= 2.7.9 =
+* Fixed slider second button URL field not shown in latest Divi
+
+= 2.7.8 =
+* Added class to Divi Booster added custom icons for easier identification by other plugins
+* Fixed custom icons not showing when Divi Icon King active
+* Added filter link to icon picker when Divi Icon King active
+
+= 2.7.7 =
+* Improved handling of URLs in second slider button
+* Added option to stop map module excerpts from unnecessarily loading maps scripts
+
+= 2.7.6 =
+* Removed a commented link to a third-party site that was triggering an error in Wordfence
+
+= 2.7.5 =
+* Fixed second slide button not showing when additional CSS classes applied
+
+= 2.7.4 =
+* Fixed missing argument error when page layout option enabled in Divi 3.10
+
+= 2.7.3 =
+* Fixed submit buttons hidden on full-screen Divi Builder windows
+* Fixed extra icons on custom hover icon when used with image module
+* Added option to set a target URL for the header image
 
 = 2.7.2 =
 * Updated full screen divi builder feature to work with new layouts section

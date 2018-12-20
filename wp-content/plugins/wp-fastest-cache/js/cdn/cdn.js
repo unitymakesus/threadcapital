@@ -34,7 +34,7 @@ var WpfcCDN = {
 				self.click_event_add_new_keyword_button();
 				self.add_new_keyword_keypress();
 
-				if(self.id == "other" || self.id == "photon" || self.id == "cloudflare"){
+				if(self.id == "other" || self.id == "photon" || self.id == "cloudflare"){
 					self.show_page("next");
 					self.hide_button("back");
 

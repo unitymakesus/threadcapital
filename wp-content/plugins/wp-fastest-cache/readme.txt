@@ -1,10 +1,10 @@
 === WP Fastest Cache ===
 Contributors: emrevona
 Donate link: http://profiles.wordpress.org/emrevona/
-Tags: cache, performance, wp-cache, total cache, super cache
+Tags: cache, performance, wp-cache, total cache, super cache, cdn
 Requires at least: 3.3
-Tested up to: 4.9
-Stable tag: 0.8.8.0
+Tested up to: 5.0
+Stable tag: 0.8.8.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -40,8 +40,9 @@ Wpfc does not support Wordpress Multisite yet.
 9. Enable/Disable cache option for logged-in users
 10. SSL support
 11. CDN support
-12. Preload Cache - Create the cache of all the site automatically
-13. Exclude pages and user-agents
+12. Cloudflare support
+13. Preload Cache - Create the cache of all the site automatically
+14. Exclude pages and user-agents
 
 <h4>Performance Optimization</h4>
 
@@ -101,6 +102,73 @@ Wpfc does not support Wordpress Multisite yet.
 18. Database Cleanup
 
 == Changelog ==
+
+= 0.8.8.8 =
+* to move "cache timeout" to under "delete cache" tab [<a target="_blank" href="https://www.wpfastestcache.com/features/cache-timeout-page/">Details</a>]
+* to prevent clearing cache after Ninja Form is submitted
+* <strong>[FEATURE]</strong> Preload for custom post types
+* to fix PHP Fatal error: Call to undefined function add_settings_error()
+
+= 0.8.8.7 =
+* to fix error which is Undefined index: SERVER_PORT
+* to prevent running preload when cache is disabled
+* to change saving options and notice system
+* to replace image urls of woocommerce variable with cdn-url
+* to fix url() problem for data:font/opentype
+* to add add_action('wp') for detection current page type
+* to support non-latin characters for clearing category cache
+* to show cache if the url contains “fbclid” (Facebook Click Identifier)
+* to show cache if the url contains “gclid” (Google Click Identifier)
+
+= 0.8.8.6 =
+* to show single clear cache button for the pages
+* to show warning if wp cron is disabled when a cache timeout rule is added
+* to disabe lazy load for the amp pages
+* to replace urls on data-cvpsrc and data-cvpset attribute with cdn-url
+* to clear the cache of a post which includes /%postname%/%post_id% permalink after the post is deleted
+* to fix vulnerability
+* to add "event" and "artist" custom post types for preload
+
+= 0.8.8.5 =
+* to fix pre tag problem after minify html
+* to add woff2 extensions for cdn
+* to support non-latin characters for exclude
+* to support non-latin characters for toolbar clear current page cache
+* to fix "removing dollar sign with number" on fixing pre tag
+* to clear cache of cloudflare afer restart preload
+* to exclude LinkedInBot user-agent
+* to replace urls on data-large_image attribute with cdn-url
+
+= 0.8.8.4 =
+* to show language option via php instead of javascript
+* to show warning if there is no zone on Cloudflare
+* to fix Uncaught SyntaxError on cdn.js [<a target="_blank" href="https://wordpress.org/support/topic/uncaught-syntaxerror-cdn-js/">Details</a>]
+* refactoring of cdn_replace_urls()
+* <strong>[FEATURE]</strong> Clear Cache via URL [<a target="_blank" href="https://www.wpfastestcache.com/features/clear-cache-via-url/">Details</a>]
+* to add webm, ogg and mp4 extensions for browser cache
+
+= 0.8.8.3 =
+* to fix Revolution Slider Error
+* to make Cloudflare CDN integration work with sub-domains
+* to fix error on js combine feature
+* to fix error replace cdn-url
+* to replace urls on data-thumb attribute with cdn-url
+* to move the rules of Gtranslate at the top of WP Fastest Cache on .htaccess
+* to define preload number manually [<a target="_blank" href="https://www.wpfastestcache.com/features/preload-settings/#preload-number">Details</a>]
+
+= 0.8.8.2 =
+* to fix removing the escaped slashes of Cloudflare Integration [<a target="_blank" href="https://wordpress.org/support/topic/wpfc-cf-is-stripping-important-code/">Details</a>]
+* <strong>[FEATURE]</strong> Compatible with Fast Velocity Minify
+* <strong>[FEATURE]</strong> Microsoft IIS support
+* to serve the sources of Rev Slider if the cdn integration is enabled
+* to exclude woocommerce_items_in_cart cookie automatically 
+* to check wptouch-pro-view cookie 
+
+= 0.8.8.1 =
+* to update russian translation
+* to set browser caching for Cloudflare
+* not to load the css and js sources of clear cache button when toolar is not visible
+* to fix SyntaxError: Unexpected token M in JSON at position 0 error
 
 = 0.8.8.0 =
 * to rename the text on admin bar
@@ -730,16 +798,13 @@ You need to refresh a page twice. If a page is cached, at the bottom of the page
 Yes, it works with Nginx properly.
 
 = Does it work with IIS (Windows Server) ? =
-No, it does not work with IIS.
+Yes, it works with IIS properly.
 
 = What does ".htaccess not found" warning mean? =
 Wpfc does not create .htaccess automatically so you need to create empty one.
 
 = How is "tmpWpfc" removed? =
 When the cached files are deleted, they are moved to "tmpWpfc" instead of being deleted and a cron-job is set. Delete all files are so difficult for server so cron-job is set not to use a lot of CPU resources. Cron-job is set and it deletes 100 files every 5 minutes. When all files in "tmpWpfc" are deleted, cron-job is unset.
-
-= How can stop caching for some pages? =
-If you add &lt;!-- [wpfcNOT] --&gt; into source coude, creating cache stops. You can find it on visual and text editor after opening Add New Post panel.
 
 = Does Wpfc work with WPMU (Wordpress Multisite) properly? =
 No. Wpfc does not support Wordpress Multisite yet.

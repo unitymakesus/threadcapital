@@ -82,7 +82,11 @@ if (divibooster_is_divi()) {
 	// Override et_pb_is_pagebuilder_used() to make page.php think pagebuilder not used
 	if (!function_exists('et_pb_is_pagebuilder_used')) {
 		
-		function et_pb_is_pagebuilder_used( $page_id ) {
+		function et_pb_is_pagebuilder_used( $page_id = 0 ) {
+			
+			if ( 0 === $page_id && function_exists('et_core_page_resource_get_the_ID')) {
+				$page_id = et_core_page_resource_get_the_ID();
+			}
 			
 			try {
 				// Get the function caller
@@ -107,6 +111,17 @@ if (divibooster_is_divi()) {
 		}
 	}
 }
+
+// New Divi def of function
+// if ( ! function_exists( 'et_pb_is_pagebuilder_used' ) ) :
+// function et_pb_is_pagebuilder_used( $page_id = 0 ) {
+	// if ( 0 === $page_id ) {
+		// $page_id = et_core_page_resource_get_the_ID();
+	// }
+
+	// return ( 'on' === get_post_meta( $page_id, '_et_pb_use_builder', true ) );
+// }
+// endif;
 
 // === Fix right sidebar default on existing pages ===
 
@@ -185,6 +200,8 @@ function divibooster128_admin_css_learndash() { ?>
 
 function divibooster128_user_css_learndash() { 
 	global $post;
+	
+	if (!isset($post->ID)) { return; }
 	
 	$supported_post_types = array(
 	'sfwd-courses',			// learndash courses

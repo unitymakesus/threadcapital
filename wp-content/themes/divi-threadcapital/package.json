@@ -349,7 +349,7 @@
       "resolved": "https://registry.npmjs.org/braces/-/braces-2.3.0.tgz",
       "version": "2.3.0"
     },
-    "browser-sync": "^2.23.5",
+    "browser-sync": "^2.26.3",
     "browser-sync-ui": {
       "integrity": "sha512-RIxmwVVcUFhRd1zxp7m2FfLnXHf59x4Gtj8HFwTA//3VgYI3AKkaQAuDL8KDJnE59XqCshxZa13JYuIWtZlKQg==",
       "requires": {

@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<div class="post-header" style="background-image: url(<?php echo get_the_post_thumbnail_url($post_id, 'large' ); ?>)">
+<div class="post-header" style="background-image: url(<?php echo get_the_post_thumbnail_url(get_the_ID(), 'large' ); ?>)">
 	<div class="entry-meta">
 		<h1 class="entry-title">News</h1>
 	</div>
@@ -14,7 +14,7 @@
 
 				<article class="post-wrapper">
 					<a href="<?php the_permalink(); ?>">
-						<section class="image" style="background-image: url(<?php echo get_the_post_thumbnail_url($post_id, 'medium' ); ?>)">
+						<section class="image" style="background-image: url(<?php echo get_the_post_thumbnail_url(get_the_ID(), 'medium' ); ?>)">
 							<div class="excerpt">
 								<?php truncate_post(100); ?>
 							</div>

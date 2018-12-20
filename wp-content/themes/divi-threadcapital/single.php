@@ -7,7 +7,7 @@ get_header();
 <div id="main-content">
   <?php while ( have_posts() ) : the_post(); ?>
 			<article id="post-<?php the_ID(); ?>" <?php post_class( 'et_pb_post' ); ?>>
-				<div class="post-header" style="background-image: url(<?php echo get_the_post_thumbnail_url( $post_id, 'large' ); ?>)">
+				<div class="post-header" style="background-image: url(<?php echo get_the_post_thumbnail_url(get_the_ID(), 'large' ); ?>)">
 					<div class="entry-meta">
 						<h1 class="entry-title"><?php the_title(); ?></h1>
 						<?php et_divi_post_meta(); ?>

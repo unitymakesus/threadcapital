@@ -356,13 +356,7 @@
     color: black !important;
 }
 
-@media only screen and (min-width: 1281px) and (max-width: 1377px) {
-  #logo {
-    max-height: auto !important;
-  }
-}
-
-@media only screen and (min-width: 981px) and (max-width: 1280px) {
+@media only screen and (min-width: 981px) and (max-width: 1377px) {
   #logo {
     max-height: 50% !important;
   }

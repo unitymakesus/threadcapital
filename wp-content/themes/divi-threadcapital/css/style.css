@@ -1070,6 +1070,19 @@ a:hover, a:focus, a:active {
   color: black !important;
 }
 
+@media only screen and (min-width: 981px) and (max-width: 1280px) {
+  #logo {
+    max-height: 50% !important;
+  }
+
+  #top-menu li a {
+    font-size: 16px;
+  }
+
+  #et-top-navigation {
+    margin-left: 75px !important;
+  }
+}
 #main-footer .container, #footer-bottom .container {
   padding: 0 30px;
   width: 100%;

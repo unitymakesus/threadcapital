@@ -355,3 +355,17 @@
 .et-fixed-header.et-fixed-header #top-menu li.current-menu-item > a {
     color: black !important;
 }
+
+@media only screen and (min-width: 981px) and (max-width: 1280px) {
+  #logo {
+    max-height: 50% !important;
+  }
+
+  #top-menu li a {
+    font-size: 16px;
+  }
+
+  #et-top-navigation {
+    margin-left: 75px !important;
+  }
+}

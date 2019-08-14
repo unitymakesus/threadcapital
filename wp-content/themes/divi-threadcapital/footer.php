@@ -33,7 +33,8 @@ if ( ! is_page_template( 'page-template-blank.php' ) ) : ?>
 				<div id="footer-bottom">
 					<div class="container clearfix">
 						<div class="left">
-							&copy;<?php echo current_time('Y'); ?> Thread Capital, a subsidiary of the <a href="https://www.ncruralcenter.org/" target="_blank" rel="noopener">NC Rural Center</a>
+							&copy;<?php echo current_time('Y'); ?> Thread Capital,
+							<?php _e('a subsidiary of the <a href="https://www.ncruralcenter.org/" target="_blank" rel="noopener">NC Rural Center</a>', 'divi-thread'); ?>
 						</div>
 						<div class="center">
 							<a href="https://www.unitymakes.us/" target="_blank" rel="noopener" class="unity-link">
@@ -41,7 +42,7 @@ if ( ! is_page_template( 'page-template-blank.php' ) ) : ?>
 							</a>
 						</div>
 						<div class="right">
-							<a href="/privacy-policy/">Privacy Policy</a>
+							<a href="/privacy-policy/"><?php _e('Privacy Policy', 'divi-thread'); ?></a>
 						</div>
 					</div>	<!-- .container -->
 				</div>

@@ -15,10 +15,36 @@
       width: 90%;
     }
   }
+
+  #logo {
+    max-width: 200px;
+  }
+
+  #et-top-navigation {
+    margin-left: 50px;
+  }
 }
 
 #top-header {
   height: 40px;
+
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .mlp_widget {
+    a {
+      padding: 5px 10px;
+      border: 1px solid $color-white;
+
+      &.current-language-item {
+        background: $color-blue-a11y;
+      }
+    }
+  }
 }
 
 #logo {

@@ -1,5 +1,13 @@
 #et-boc,
-#et-fb-app-frame { width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
+#et-fb-app-frame {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+}
+
 #et-fb-app-frame { z-index: 2; }
 
 /* Force app frame ancestor elements to fully fill the top window */
@@ -31,4 +39,14 @@
 	background: #F1F5F9;
 }
 
-.et-fb-preview--wireframe .et_pb_3rd_party_theme #et-boc { z-index: 9999999; }
+.et-fb-preview--wireframe .et_pb_3rd_party_theme #et-boc,
+.et-fb-preview--wireframe .et_pb_3rd_party_theme .media-modal-backdrop,
+.et-fb-preview--wireframe .et_pb_3rd_party_theme #wpadminbar { z-index: 9999999; }
+
+.et-fb-preview--wireframe .et_pb_3rd_party_theme .media-modal { z-index: 99999991; }
+
+.et_pb_3rd_party_theme .media-modal button, 
+.et_pb_3rd_party_theme .media-modal input[type="button"],
+.et_pb_3rd_party_theme .media-modal input[type="submit"] { font-weight: 400; }
+
+.et_pb_3rd_party_theme .media-modal button.media-modal-close:hover { background: none; }

@@ -6,7 +6,7 @@
 			<div id="left-area">
 	      <?php echo do_shortcode('[et_pb_section global_module="1099"][/et_pb_section]'); // News heading layout ?>
 
-        <h2 class="category-title"><?php echo single_cat_title(); ?> Updates</h2>
+        <h2 class="category-title"><?php echo single_cat_title() . ' ' . __('Updates', 'divi-thread'); ?></h2>
 
       <?php
 			if ( have_posts() ) :

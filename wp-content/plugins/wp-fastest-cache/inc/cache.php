@@ -81,29 +81,20 @@
 			if($this->isMobile() && isset($this->options->wpFastestCacheMobile)){
 				if(class_exists("WpFcMobileCache") && isset($this->options->wpFastestCacheMobileTheme)){
 					$wpfc_mobile = new WpFcMobileCache();
-					$this->cacheFilePath = $this->getWpContentDir()."/cache/".$wpfc_mobile->get_folder_name()."".$_SERVER["REQUEST_URI"];
+					$this->cacheFilePath = $this->getWpContentDir("/cache/wpfc-mobile-cache").$_SERVER["REQUEST_URI"];
 				}
 			}else{
 				if($this->isPluginActive('gtranslate/gtranslate.php')){
 					if(isset($_SERVER["HTTP_X_GT_LANG"])){
-						//$this->cacheFilePath = $this->getWpContentDir()."/cache/all/".$_SERVER["HTTP_X_GT_LANG"];
-						$this->cacheFilePath = $this->getWpContentDir()."/cache/all/".$_SERVER["HTTP_X_GT_LANG"].$_SERVER["REQUEST_URI"];
+						$this->cacheFilePath = $this->getWpContentDir("/cache/all/").$_SERVER["HTTP_X_GT_LANG"].$_SERVER["REQUEST_URI"];
 					}else if(isset($_SERVER["REDIRECT_URL"]) && $_SERVER["REDIRECT_URL"] != "/index.php"){
-						$this->cacheFilePath = $this->getWpContentDir()."/cache/all/".$_SERVER["REDIRECT_URL"];
+						$this->cacheFilePath = $this->getWpContentDir("/cache/all/").$_SERVER["REDIRECT_URL"];
 					}else if(isset($_SERVER["REQUEST_URI"])){
-						$this->cacheFilePath = $this->getWpContentDir()."/cache/all/".$_SERVER["REQUEST_URI"];
+						$this->cacheFilePath = $this->getWpContentDir("/cache/all/").$_SERVER["REQUEST_URI"];
 					}
 				}else{
-					$this->cacheFilePath = $this->getWpContentDir()."/cache/all/".$_SERVER["REQUEST_URI"];
+					$this->cacheFilePath = $this->getWpContentDir("/cache/all/").$_SERVER["REQUEST_URI"];
 				}
-			}
-
-			//WPML language switch
-			//https://wpml.org/forums/topic/wpml-language-switch-wp-fastest-cache-issue/
-			$language_negotiation_type = apply_filters('wpml_setting', false, 'language_negotiation_type');
-			if ($this->isPluginActive('sitepress-multilingual-cms/sitepress.php') && 2 == $language_negotiation_type){
-			    $current_language = apply_filters('wpml_current_language', false);
-			    $this->cacheFilePath = str_replace('/cache/all/', '/cache/all/'.$current_language.'/', $this->cacheFilePath);
 			}
 
 
@@ -139,6 +130,11 @@
 			// to decode path if it is not utf-8
 			if($this->cacheFilePath){
 				$this->cacheFilePath = urldecode($this->cacheFilePath);
+			}
+
+			// for security
+			if(preg_match("/\.{2,}/", $this->cacheFilePath)){
+				$this->cacheFilePath = false;
 			}
 		}
 
@@ -448,7 +444,7 @@
 					//"\/product"
 					//"\/product-category"
 
-					array_push($list, "\/cart", "\/checkout", "\/receipt", "\/confirmation", "\/wc-api\/");
+					array_push($list, "\/cart\/?$", "\/checkout", "\/receipt", "\/confirmation", "\/wc-api\/");
 				}
 			}
 
@@ -480,11 +476,11 @@
 						if(preg_match("/utm_(source|medium|campaign|content|term)/i", $request_url)){
 							return true;
 						}
-					}else if($buffer && isset($value->prefix) && $value->prefix && ($value->type == "page")){
+					}else if(isset($value->prefix) && $value->prefix && ($value->type == "page")){
 						$value->content = trim($value->content);
 						$value->content = trim($value->content, "/");
 
-						if(preg_match("/^(homepage|category|tag|post|page|archive|attachment)$/", $value->prefix)){
+						if($buffer && preg_match("/^(homepage|category|tag|post|page|archive|attachment)$/", $value->prefix)){
 							if(preg_match('/<\!--WPFC_PAGE_TYPE_'.$value->prefix.'-->/i', $buffer)){
 								return true;
 							} 
@@ -499,8 +495,10 @@
 								$preg_match_rule = preg_quote($value->content, "/");
 							}
 
-							if(preg_match("/".$preg_match_rule."/i", $request_url)){
-								return true;
+							if($preg_match_rule){
+								if(preg_match("/".$preg_match_rule."/i", $request_url)){
+									return true;
+								}
 							}
 						}
 					}else if($value->type == "useragent"){
@@ -586,7 +584,7 @@
 				return $buffer."<!-- wp-login.php -->";
 			}else if($this->hasContactForm7WithCaptcha($buffer)){
 				return $buffer."<!-- This page was not cached because ContactForm7's captcha -->";
-			}else if(is_404() || preg_match("/<title>404\sNot\sFound<\/title>/", $buffer)){
+			}else if((function_exists("http_response_code") && (http_response_code() === 404)) || is_404() || preg_match("/<title>404\sNot\sFound<\/title>/", $buffer)){
 				return $buffer;
 			}else if($this->ignored($buffer)){
 				return $buffer;
@@ -688,10 +686,6 @@
 				}else{
 					$content = $this->cacheDate($content);
 					$content = $this->minify($content);
-
-					$content = $this->cdn_rewrite($content);
-					
-					
 					$content = str_replace("<!--WPFC_FOOTER_START-->", "", $content);
 
 
@@ -725,16 +719,15 @@
 						}
 					}
 
-					// WP Hide & Security Enhancer
-					if($this->isPluginActive('wp-hide-security-enhancer/wp-hide.php')){
-						global $wph;
-						$content = $wph->functions->content_urls_replacement($content, $wph->functions->get_replacement_list());
-					}
+					$content = $this->cdn_rewrite($content);
 
 					$content = $this->fix_pre_tag($content, $buffer);
 
 					if($this->cacheFilePath){
+
 						$this->createFolder($this->cacheFilePath, $content);
+
+						do_action('wpfc_is_cacheable_action');
 					}
 
 					return $content."<!-- need to refresh to see cached version -->";
@@ -768,7 +761,7 @@
 
 		public function cdn_rewrite($content){
 			if($this->cdn){
-				$content = preg_replace_callback("/(srcset|src|href|data-cvpsrc|data-cvpset|data-thumb|data-bg-url|data-large_image|data-lazyload|data-source-url|data-srcsmall|data-srclarge|data-srcfull|data-slide-img|data-lazy-original)\s{0,2}\=[\'\"]([^\'\"]+)[\'\"]/i", array($this, 'cdn_replace_urls'), $content);
+				$content = preg_replace_callback("/(srcset|src|href|data-img-url|data-cvpsrc|data-cvpset|data-thumb|data-bg-url|data-large_image|data-lazyload|data-source-url|data-srcsmall|data-srclarge|data-srcfull|data-slide-img|data-lazy-original)\s{0,2}\=[\'\"]([^\'\"]+)[\'\"]/i", array($this, 'cdn_replace_urls'), $content);
 
 				//url()
 				$content = preg_replace_callback("/(url)\(([^\)\>]+)\)/i", array($this, 'cdn_replace_urls'), $content);
@@ -902,6 +895,8 @@
 						if(is_writable($this->getWpContentDir()) || ((is_dir($this->getWpContentDir()."/cache")) && (is_writable($this->getWpContentDir()."/cache")))){
 							if (@mkdir($cachFilePath, 0755, true)){
 
+								$buffer = (string) apply_filters('wpfc_buffer_callback_filter', $buffer, $extension);
+
 								file_put_contents($cachFilePath."/".$file_name.$extension, $buffer);
 								
 								if(class_exists("WpFastestCacheStatics")){
@@ -934,7 +929,8 @@
 						if(file_exists($cachFilePath."/".$file_name.$extension)){
 
 						}else{
-
+							$buffer = (string) apply_filters('wpfc_buffer_callback_filter', $buffer, $extension);
+							
 							file_put_contents($cachFilePath."/".$file_name.$extension, $buffer);
 							
 							if(class_exists("WpFastestCacheStatics")){
@@ -958,8 +954,12 @@
 		public function is_amp($content){
 			$request_uri = trim($_SERVER["REQUEST_URI"], "/");
 
-			if(preg_match("/^amp/", $request_uri) || preg_match("/amp$/", $request_uri)){
+			if(preg_match("/^amp/", $request_uri) || preg_match("/\/amp\//", $request_uri) || preg_match("/amp$/", $request_uri)){
 				if(preg_match("/<html[^\>]+amp[^\>]*>/i", $content)){
+					return true;
+				}
+
+				if(preg_match("/<html[^\>]+\⚡[^\>]*>/i", $content)){
 					return true;
 				}
 			}

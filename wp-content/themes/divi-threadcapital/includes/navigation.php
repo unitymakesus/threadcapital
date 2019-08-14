@@ -1,7 +1,7 @@
 <?php
   the_posts_pagination([
-    'prev_text' => '&laquo; Previous <span class="screen-reader-text">page</span>',
-    'next_text' => 'Next <span class="screen-reader-text">page</span> &raquo;',
-    'before_page_number' => '<span class="meta-nav screen-reader-text">Page</span>',
+    'prev_text' => '&laquo; ' . __('Previous', 'divi-thread') . '<span class="screen-reader-text">' . __('page', 'divi-thread') . '</span>',
+    'next_text' => __('Next', 'divi-thread') . ' <span class="screen-reader-text">' . __('page', 'divi-thread') . '</span> &raquo;',
+    'before_page_number' => '<span class="meta-nav screen-reader-text">' . __('Page', 'divi-thread') . '</span>',
   ]);
 ?>

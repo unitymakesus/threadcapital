@@ -1,4 +1,8 @@
 <?php
+/**
+* Make theme available for translation
+*/
+load_theme_textdomain( 'divi-thread', get_template_directory() . '/languages' );
 
 /**
  * Theme assets
@@ -46,7 +50,7 @@ add_action('after_setup_theme', function() {
 						<a class="mobile_menu_toggle" href="#"></a>
 					</div>
 				</div>',
-				esc_html__( 'Select Page', 'Divi' )
+				esc_html__( 'Select Page', 'divi-thread' )
 			);
 		}
 	}
@@ -57,19 +61,19 @@ add_action('after_setup_theme', function() {
  * Custom Post Types
  */
 add_action( 'init', function() {
-	register_post_type( 'staff',
+	register_post_type( __('staff', 'divi-thread'),
 		array('labels' => array(
-				'name' => 'Staff',
-				'singular_name' => 'Staff',
-				'add_new' => 'Add New',
-				'add_new_item' => 'Add New Staff',
-				'edit' => 'Edit',
-				'edit_item' => 'Edit Staff',
-				'new_item' => 'New Staff',
-				'view_item' => 'View Staff',
-				'search_items' => 'Search Staff',
-				'not_found' =>  'Nothing found in the Database.',
-				'not_found_in_trash' => 'Nothing found in Trash',
+				'name' => __('Staff', 'divi-thread'),
+				'singular_name' => __('Staff', 'divi-thread'),
+				'add_new' => __('Add New', 'divi-thread'),
+				'add_new_item' => __('Add New Staff', 'divi-thread'),
+				'edit' => __('Edit', 'divi-thread'),
+				'edit_item' => __('Edit Staff', 'divi-thread'),
+				'new_item' => __('New Staff', 'divi-thread'),
+				'view_item' => __('View Staff', 'divi-thread'),
+				'search_items' => __('Search Staff', 'divi-thread'),
+				'not_found' => __('Nothing found in the Database.', 'divi-thread'),
+				'not_found_in_trash' => __('Nothing found in Trash', 'divi-thread'),
 				'parent_item_colon' => ''
 			), /* end of arrays */
 			'exclude_from_search' => false,
@@ -91,7 +95,7 @@ add_action( 'init', function() {
 		'staff-type',
 		'staff',
 		array(
-			'label' => __( 'Staff Type' ),
+			'label' => __( 'Staff Type', 'divi-thread' ),
 			'rewrite' => false,
 			'hierarchical' => true,
 		)
@@ -132,7 +136,7 @@ add_shortcode('staff-listing', function($atts) {
 				<?php the_advanced_excerpt(); ?>
 			</div>
 			<div class="col_3_8">
-				<?php the_post_thumbnail('medium', ['alt' => 'Photograph of ' . get_the_title(), 'itemprop' => 'image']); ?>
+				<?php the_post_thumbnail('medium', ['alt' => __('Photograph of', 'divi-thread') . ' ' . get_the_title(), 'itemprop' => 'image']); ?>
 				<div class="tagline">
 					<?php the_field('tagline'); ?>
 				</div>
@@ -153,32 +157,52 @@ add_shortcode('process-graphic', function($atts) {
 		<div class="process-graphic">
 			<article>
 				<img src="<?php bloginfo('stylesheet_directory'); ?>/images/graphic/apply.png" / alt="Image of clock">
-				<p>Apply in Minutes</p>
+				<p><?php _e('Apply in Minutes', 'divi-thread'); ?></p>
 			</article>
 
 			<span class="dash"></span>
 
 			<article>
 				<img src="<?php bloginfo('stylesheet_directory'); ?>/images/graphic/connect.png" alt="Image of connected people"/>
-				<p>Connect with Thread Capital Team</p>
+				<p><?php _e('Connect with Thread Capital Team', 'divi-thread'); ?></p>
 			</article>
 
 			<span class="dash"></span>
 
 			<article>
 				<img src="<?php bloginfo('stylesheet_directory'); ?>/images/graphic/submit.png" alt="Image of submit document"/>
-				<p>Submit Verification Documents</p>
+				<p><?php _e('Submit Verification Documents', 'divi-thread'); ?></p>
 			</article>
 
 			<div class="dash"></div>
 
 			<article>
 				<img src="<?php bloginfo('stylesheet_directory'); ?>/images/graphic/funding.png" alt="Image of money"/>
-				<p>Receive Funding</p>
+				<p><?php _e('Receive Funding', 'divi-thread'); ?></p>
 			</article>
 		</div>
 
 	<?php return ob_get_clean();
+});
+
+/**
+ * Add top-header widget area
+ */
+add_filter('widgets_init', function() {
+	$config = [
+    'before_widget' => '<section class="widget %1$s %2$s">',
+    'after_widget'  => '</section>',
+    'before_title'  => '<h3>',
+    'after_title'   => '</h3>'
+  ];
+  register_sidebar([
+    'name'          => __('Top Header Left', 'divi-thread'),
+    'id'            => 'top-header-left'
+  ] + $config);
+  register_sidebar([
+    'name'          => __('Top Header Right', 'divi-thread'),
+    'id'            => 'top-header-right'
+  ] + $config);
 });
 
 

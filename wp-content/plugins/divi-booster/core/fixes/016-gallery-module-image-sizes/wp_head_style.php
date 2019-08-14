@@ -16,7 +16,9 @@ $margin = @floor((1080-$option['imagewidth']*$option['imagescount'])/($option['i
 }
 .et_pb_gallery_grid .et_pb_gallery_image img
 {
+	/*
     min-width: <?php echo htmlentities(@$option['imagewidth']); ?>px;
+	*/
 }
 
 /* Set the image heights */

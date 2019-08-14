@@ -15,7 +15,7 @@ while ( have_posts() ) : the_post();
   <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
     <div class="row person" itemscope itemprop="author" itemtype="http://schema.org/Person">
       <div class="col_3_8">
-        <?php the_post_thumbnail('medium', ['alt' => 'Photograph of ' . get_the_title(), 'itemprop' => 'image']); ?>
+        <?php the_post_thumbnail('medium', ['alt' => __('Photograph of', 'divi-thread') . ' ' . get_the_title(), 'itemprop' => 'image']); ?>
         <div class="tagline">
           <?php the_field('tagline'); ?>
         </div>

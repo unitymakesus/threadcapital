@@ -212,9 +212,17 @@ endif;
  */
 if ( ! function_exists( 'et_core_fix_unclosed_html_tags' ) ):
 function et_core_fix_unclosed_html_tags( $content ) {
-	// Exit if source has no HTML tags or we miss what we need to fix them anyway
+	// Exit if source has no HTML tags or we miss what we need to fix them anyway.
 	if ( false === strpos( $content, '<' ) || ! class_exists( 'DOMDocument' ) ) {
 		return $content;
+	}
+
+	$scripts = false;
+
+	if ( false !== strpos( $content, '<script' ) ) {
+		// Replace scripts with placeholders so we don't mess with HTML included in JS strings.
+		$scripts = new ET_Core_Data_ScriptReplacer();
+		$content = preg_replace_callback( '|<script.*?>[\s\S]+?</script>|', array( $scripts, 'replace' ), $content );
 	}
 
 	$doc = new DOMDocument();
@@ -225,12 +233,36 @@ function et_core_fix_unclosed_html_tags( $content ) {
 		$content
 	) );
 
-	if ( preg_match( '|<body>([\s\S]+)</body>|', $doc->saveHTML(), $matches) ) {
-		// Return fixed content
-		return $matches[1];
+	if ( preg_match( '|<body>([\s\S]+)</body>|', $doc->saveHTML(), $matches ) ) {
+		// Extract the fixed content.
+		$content = $matches[1];
 	}
 
-	// Something went wrong with the fixing, return original content
+	if ( $scripts ) {
+		// Replace placeholders with scripts.
+		$content = strtr( $content, $scripts->map() );
+	}
+
 	return $content;
+}
+endif;
+
+
+/**
+ * Converts string to UTF-8 if mb_convert_encoding function exists
+ *
+ * @since 3.19.17
+ *
+ * @param string $string source string
+ *
+ * @return string
+ */
+if ( ! function_exists( 'et_core_maybe_convert_to_utf_8' ) ):
+function et_core_maybe_convert_to_utf_8( $string ) {
+	if ( function_exists( 'mb_convert_encoding' ) ) {
+		return mb_convert_encoding( $string, 'UTF-8' );
+	}
+
+	return $string;
 }
 endif;

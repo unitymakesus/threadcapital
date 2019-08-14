@@ -1,0 +1,159 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Thread Capital\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-05-30 21:13+0000\n"
+"PO-Revision-Date: 2019-08-12 21:35+0000\n"
+"Last-Translator: unityadmin <admin@unitymakes.us>\n"
+"Language-Team: Spanish (Spain)\n"
+"Language: es_ES\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.3.0; wp-5.2.2"
+
+#: functions.php:49
+msgid "Select Page"
+msgstr "Seleccionar Página"
+
+#: functions.php:60
+msgid "staff"
+msgstr "personal"
+
+#: functions.php:62 functions.php:63
+msgid "Staff"
+msgstr "Personal"
+
+#: functions.php:64
+msgid "Add New"
+msgstr "Añadir Nuevo"
+
+#: functions.php:65
+msgid "Add New Staff"
+msgstr "Añadir Nuevo Personal"
+
+#: functions.php:66
+msgid "Edit"
+msgstr "Editar"
+
+#: functions.php:67
+msgid "Edit Staff"
+msgstr "Editar Personal"
+
+#: functions.php:68
+msgid "New Staff"
+msgstr "Nuevo Personal"
+
+#: functions.php:69
+msgid "View Staff"
+msgstr "Ver Personal"
+
+#: functions.php:70
+msgid "Search Staff"
+msgstr "Buscar Personal"
+
+#: functions.php:71
+msgid "Nothing found in the Database."
+msgstr "Nada Encontrado"
+
+#: functions.php:72
+msgid "Nothing found in Trash"
+msgstr "Nada Encontrado"
+
+#: functions.php:94
+msgid "Staff Type"
+msgstr "Tipo de Personal"
+
+#: functions.php:135 single-staff.php:18
+msgid "Photograph of"
+msgstr "Foto de"
+
+#: functions.php:156
+msgid "Apply in Minutes"
+msgstr "Haga su Solicitud en Minutos"
+
+#: functions.php:163
+msgid "Connect with Thread Capital Team"
+msgstr "Contacte al Equipo de Thread Capital"
+
+#: functions.php:170
+msgid "Submit Verification Documents"
+msgstr "Envíe los Documentos de Verificación"
+
+#: functions.php:177
+msgid "Receive Funding"
+msgstr "Reciba Financiamiento"
+
+#: category.php:9
+msgid "Updates"
+msgstr "Actualizaciones"
+
+#: home.php:9
+msgid "News"
+msgstr "Noticias"
+
+#: header.php:61
+msgid "Skip to content"
+msgstr "Saltar al Contenido"
+
+#: header.php:172 header.php:300
+msgid "Search"
+msgstr "Búsqueda"
+
+#: header.php:174 header.php:302
+msgid "Search for"
+msgstr "Buscar"
+
+#: header.php:217 header.php:260
+msgid "Home"
+msgstr "Página principal"
+
+#: footer.php:37
+msgid ""
+"a subsidiary of the <a href=\"https://www.ncruralcenter.org/\" "
+"target=\"_blank\" rel=\"noopener\">NC Rural Center</a>"
+msgstr ""
+"una subsidiaria de <a href=\"https://www.ncruralcenter.org/\" "
+"target=\"_blank\" rel=\"noopener\">NC Rural Center</a>"
+
+#: footer.php:45
+msgid "Privacy Policy"
+msgstr "Política de Privacidad"
+
+#: includes/navigation.php:3
+msgid "Previous"
+msgstr "Anterior"
+
+#: includes/navigation.php:3 includes/navigation.php:4
+msgid "page"
+msgstr "página"
+
+#: includes/navigation.php:4
+msgid "Next"
+msgstr "Siguiente"
+
+#: includes/navigation.php:5
+msgid "Page"
+msgstr "Página"
+
+#. Name of the theme
+msgid "Thread Capital"
+msgstr "Thread Capital"
+
+#. Description of the theme
+msgid "Custom WordPress theme for Thread Capital, based on Divi"
+msgstr "Custom WordPress theme for Thread Capital, based on Divi"
+
+#. URI of the theme
+msgid "https://github.com/unitymakesus/threadcapital"
+msgstr "https://github.com/unitymakesus/threadcapital"
+
+#. Author of the theme
+msgid "Unity Digital Agency"
+msgstr "https://github.com/unitymakesus/threadcapital"
+
+#. Author URI of the theme
+msgid "https://www.unitymakes.us/"
+msgstr "https://www.unitymakes.us/"

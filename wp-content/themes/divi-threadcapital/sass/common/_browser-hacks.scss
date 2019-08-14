@@ -1,3 +1,8 @@
+// DIVI... ugh
+.et_vertical_nav #et-main-area.et-fb-iframe-ancestor, .et-fb-iframe-ancestor {
+  overflow: visible;
+}
+
 // EDGE
 @supports (display:-ms-grid) {
   .et_section_specialty > .et_pb_row .et_pb_column {

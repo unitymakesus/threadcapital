@@ -77,7 +77,7 @@
 												"X-Auth-Key" => $key,
 												"Content-Type" => "application/json"
 												),
-								'body' => '{"value":2073600}'
+								'body' => '{"value":16070400}'
 								);
 
 				$response = wp_remote_request('https://api.cloudflare.com/client/v4/zones/'.$zoneid.'/settings/browser_cache_ttl', $header);
@@ -160,7 +160,9 @@
 					if(isset($zone->result) && isset($zone->result[0])){
 						foreach ($zone->result as $zone_key => $zone_value) {
 							if(preg_match("/".$zone_value->name."/", $hostname)){
-								$res = array("success" => true, "zoneid" => $zone_value->id);
+								$res = array("success" => true, 
+											 "zoneid" => $zone_value->id,
+											 "plan" => $zone_value->plan->legacy_id);
 							}
 						}
 
@@ -174,6 +176,19 @@
 			}
 
 			return $res;
+		}
+
+		public static function cloudflare_remove_webp(){
+			$path = ABSPATH.".htaccess";
+
+			if(file_exists($path)){
+				if(is_writable($path)){
+					$htaccess = file_get_contents($path);
+					$htaccess = preg_replace("/#\s?BEGIN\s?WEBPWpFastestCache.*?#\s?END\s?WEBPWpFastestCache/s", "", $htaccess);
+
+					file_put_contents($path, $htaccess);
+				}
+			}
 		}
 
 
@@ -193,6 +208,11 @@
 					$rocket_loader = CdnWPFC::cloudflare_disable_rocket_loader($email, $key, $zone["zoneid"]);
 					$purge_cache = CdnWPFC::cloudflare_clear_cache($email, $key, $zone["zoneid"]);
 					$browser_caching = CdnWPFC::cloudflare_set_browser_caching($email, $key, $zone["zoneid"]);
+
+					if($zone["plan"] == "free"){
+						CdnWPFC::cloudflare_remove_webp();;
+					}
+
 
 					if($minify["success"]){
 						if($rocket_loader["success"]){
@@ -234,7 +254,7 @@
 					$_GET["url"] = "http://".$_GET["url"];
 				}
 				
-				$response = wp_remote_get($_GET["url"], array('timeout' => 20 ) );
+				$response = wp_remote_get($_GET["url"], array('timeout' => 20, 'user-agent' => "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:64.0) Gecko/20100101 Firefox/64.0"));
 
 				$header = wp_remote_retrieve_headers($response);
 

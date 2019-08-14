@@ -36,14 +36,19 @@ class wtfplugin_1_0 {
 		
 		// Load the function files (needs to happen before file compilation)
 		$options = get_option($this->slug);
-		if (isset($options['fixes']) and is_array($options['fixes'])) { 
-			foreach($options['fixes'] as $fix=>$data) {
-				if (isset($data['enabled']) && $data['enabled']) { 
-					$fnfile = BOOSTER_DIR_FIXES."$fix/functions.php";
-					if (file_exists($fnfile)) { include($fnfile); }	
-				}
+		$fixes = (isset($options['fixes']) and is_array($options['fixes']))?$options['fixes']:array();
+		$fixes = apply_filters('divibooster_fixes', $fixes);
+		
+		//if (isset($options['fixes']) and is_array($options['fixes'])) { 
+		foreach($fixes as $fix=>$data) {
+			if (isset($data['enabled']) && $data['enabled']) { 
+				$fnfile = BOOSTER_DIR_FIXES."$fix/functions.php";
+				if (file_exists($fnfile)) { 
+					include($fnfile); 
+				}	
 			}
 		}
+		//}
 			
 		if (is_admin()) { // Create the plugin settings page
 			
@@ -125,8 +130,8 @@ class wtfplugin_1_0 {
 	function enqueue_settings_files() { 
 	
 		// plugin style and js
-		wp_enqueue_style($this->slug.'_admin_css', plugin_dir_url(__FILE__).'admin/settings.css');
-		wp_enqueue_script($this->slug.'_admin_js', plugin_dir_url(__FILE__).'admin/admin.js', array('jquery'));
+		wp_enqueue_style($this->slug.'_admin_css', plugin_dir_url(__FILE__).'admin/settings.css', array(), BOOSTER_VERSION);
+		wp_enqueue_script($this->slug.'_admin_js', plugin_dir_url(__FILE__).'admin/admin.js', array('jquery'), BOOSTER_VERSION);
 		
 		// color picker
 		wp_enqueue_script('wp-color-picker');
@@ -138,8 +143,18 @@ class wtfplugin_1_0 {
 	}
 	
 	function add_plugin_action_links($links) {
-		$page = ($this->config['plugin']['admin_menu']=='themes.php'?'themes.php':'admin.php');
-		$links[] = '<a href="'.get_bloginfo('wpurl').'/wp-admin/'.$page.'?page='.$this->slug.'_settings">Settings</a>';
+		
+		// Ensure we have an array
+		if (!is_array($links)) { 
+			$links = array(); 
+		}
+		
+		// Add a link to the settings page
+		$admin_area_url = get_bloginfo('wpurl').'/wp-admin/';
+		$admin_menu = ($this->config['plugin']['admin_menu']=='themes.php'?'themes.php':'admin.php');
+		$settings_url = $admin_area_url.$admin_menu.'?page='.$this->slug.'_settings';
+		$links[] = '<a href="'.esc_attr($settings_url).'">Settings</a>';
+		
 		return $links;
 	}
 	
@@ -204,6 +219,11 @@ class wtfplugin_1_0 {
 				}
 				@file_put_contents($wp_htaccess_file, $htaccess);
 			}
+		}
+		
+		// Try to clear website caches, using Divi's own cache clearing code
+		if (function_exists('et_core_clear_wp_cache') && function_exists('et_core_security_check_passed')) { 
+			et_core_clear_wp_cache(); 
 		}
 	}
 	
@@ -379,7 +399,7 @@ class wtfplugin_1_0 {
 	
 	function hiddencheckbox($file, $field='enabled') { 
 		list($name, $option) = $this->get_setting_bases($file); ?>
-		<input type="checkbox" style="visibility:hidden" name="<?php echo $name; ?>[<?php echo htmlentities($field); ?>]" value="1" checked="checked"/>
+		<input type="checkbox" style="visibility:hidden" name="<?php esc_attr_e($name); ?>[<?php esc_attr_e($field); ?>]" value="1" checked="checked"/>
 		<?php
 	}
 	

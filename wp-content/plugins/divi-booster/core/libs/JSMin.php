@@ -103,11 +103,12 @@ class JSMin {
             return $this->output;
         }
 
-        $mbIntEnc = null;
-        if (function_exists('mb_strlen') && ((int)ini_get('mbstring.func_overload') & 2)) {
-            $mbIntEnc = mb_internal_encoding();
-            mb_internal_encoding('8bit');
-        }
+		// // DM: Disabled to avoid PHP 7.2 deprecation warnings
+        // $mbIntEnc = null;
+        // if (function_exists('mb_strlen') && ((int)ini_get('mbstring.func_overload') & 2)) {
+            // $mbIntEnc = mb_internal_encoding();
+            // mb_internal_encoding('8bit');
+        // }
         $this->input = str_replace("\r\n", "\n", $this->input);
         $this->inputLength = strlen($this->input);
 
@@ -146,9 +147,10 @@ class JSMin {
         }
         $this->output = trim($this->output);
 
-        if ($mbIntEnc !== null) {
-            mb_internal_encoding($mbIntEnc);
-        }
+		// // DM: Disabled to avoid PHP 7.2 deprecation warnings
+        // if ($mbIntEnc !== null) {
+            // mb_internal_encoding($mbIntEnc);
+        // }
         return $this->output;
     }
 

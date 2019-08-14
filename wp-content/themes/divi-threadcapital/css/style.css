@@ -782,9 +782,27 @@ a:hover, a:focus, a:active {
     width: 90%;
   }
 }
+#main-header #logo {
+  max-width: 200px;
+}
+#main-header #et-top-navigation {
+  margin-left: 50px;
+}
 
 #top-header {
   height: 40px;
+}
+#top-header .row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+#top-header .mlp_widget a {
+  padding: 5px 10px;
+  border: 1px solid #FFF;
+}
+#top-header .mlp_widget a.current-language-item {
+  background: #237BC0;
 }
 
 #logo {
@@ -1857,6 +1875,10 @@ a:hover, a:focus, a:active {
 .et_section_specialty > .et_pb_row .et_pb_column {
   display: flex;
   flex-direction: column;
+}
+
+.et_vertical_nav #et-main-area.et-fb-iframe-ancestor, .et-fb-iframe-ancestor {
+  overflow: visible;
 }
 
 @supports (display: -ms-grid) {

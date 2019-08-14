@@ -6,4 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Shortcode_Button' => $vendorDir . '/jtsternberg/shortcode-button/shortcode-button.php',
+    'WDS_Shortcode' => $vendorDir . '/webdevstudios/wds-shortcodes/includes/shortcode.php',
+    'WDS_Shortcode_Admin' => $vendorDir . '/webdevstudios/wds-shortcodes/includes/shortcode-admin.php',
+    'WDS_Shortcode_Instances' => $vendorDir . '/webdevstudios/wds-shortcodes/includes/shortcode-instances.php',
+    'WDS_Shortcodes' => $vendorDir . '/webdevstudios/wds-shortcodes/includes/shortcodes.php',
 );

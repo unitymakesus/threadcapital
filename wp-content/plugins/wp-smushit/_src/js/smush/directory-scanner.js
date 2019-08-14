@@ -37,6 +37,7 @@ const DirectoryScanner = ( totalSteps, currentStep ) => {
 			if ( cancelling ) {
 				return 0;
 			}
+			// O M G ... Logic at it's finest!
 			const remainingSteps = totalSteps - currentStep;
 			return Math.min( Math.round( ( parseInt( ( totalSteps - remainingSteps ) ) * 100 ) / totalSteps ), 99 );
 		},
@@ -57,14 +58,17 @@ const DirectoryScanner = ( totalSteps, currentStep ) => {
 			dialog.addClass( 'wp-smush-exceed-limit' );
 			dialog.find( '#cancel-directory-smush' ).attr( 'data-tooltip', wp_smush_msgs.bulk_resume );
 			dialog.find( '.sui-icon-close' ).removeClass( 'sui-icon-close' ).addClass( 'sui-icon-play' );
+			dialog.find( '#cancel-directory-smush' ).attr( 'id', 'cancel-directory-smush-disabled' );
 		},
 
 		resume: function() {
 			let dialog = $( '#wp-smush-progress-dialog' );
+			let resume = dialog.find( '#cancel-directory-smush-disabled' );
 
 			dialog.removeClass( 'wp-smush-exceed-limit' );
-			dialog.find( '#cancel-directory-smush' ).attr( 'data-tooltip', 'Cancel' );
 			dialog.find( '.sui-icon-play' ).removeClass( 'sui-icon-play' ).addClass( 'sui-icon-close' );
+            resume.attr( 'data-tooltip', 'Cancel' );
+            resume.attr( 'id', 'cancel-directory-smush' );
 
 			obj.scan();
 		}

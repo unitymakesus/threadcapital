@@ -4,9 +4,9 @@ Plugin Name: Divi Booster
 Plugin URI: 
 Description: Bug fixes and enhancements for Elegant Themes' Divi Theme.
 Author: Dan Mossop
-Version: 2.7.9
+Version: 2.9.5
 Author URI: https://divibooster.com
-*/		
+*/	
 
 // === Configuration === //
 
@@ -16,7 +16,7 @@ define('BOOSTER_DIR', dirname(BOOSTER_FILE));
 define('BOOSTER_CORE', BOOSTER_DIR.'/core');
 define('BOOSTER_SLUG', 'divi-booster');
 define('BOOSTER_SLUG_OLD', $slug);
-define('BOOSTER_VERSION', '2.7.9');
+define('BOOSTER_VERSION', '2.9.5'); 
 define('BOOSTER_VERSION_OPTION', 'divibooster_version');
 define('BOOSTER_SETTINGS_PAGE_SLUG', BOOSTER_SLUG_OLD.'_settings');
 define('BOOSTER_NAME', __('Divi Booster', BOOSTER_SLUG));
@@ -146,6 +146,27 @@ add_filter("$slug-js-dependencies", 'divibooster_add_dependencies');
 include(BOOSTER_CORE.'/customizer/customizer_1_0.class.php'); // Load the customizer library
 $divibooster_customizer = new booster_customizer_1_0($slug);
 
+// === Set enabled-by-default fixes ===
+
+add_filter('divibooster_fixes', 'db126_enable_feature_by_default');
+
+function db126_enable_feature_by_default($fixes) {
+	
+	if (!is_array($fixes)) { return $fixes; }
+	
+	$enabled_by_default = array(
+		'126-customizer-social-icons'
+	);
+	
+	foreach($enabled_by_default as $fix) {
+		if (!isset($fixes[$fix]['enabled'])) { 
+			$fixes[$fix]['enabled'] = true;
+		}
+	}
+	
+	return $fixes;
+}
+
 // === Main plugin ===
 
 $admin_menu = (is_divi24() or !divibooster_is_divi())?'et_divi_options':'themes.php';
@@ -154,22 +175,33 @@ if (divibooster_is_extra()) {
 }
 
 
-$wtfdivi = new wtfplugin_1_0(
-	array(
-		'theme'=>$theme,
-		'plugin'=>array(
-			'name'=>BOOSTER_NAME,
-			'shortname'=>BOOSTER_NAME, // menu name
-			'slug'=>$slug,
-			'package_slug'=>BOOSTER_PACKAGE_NAME,
-			'plugin_file'=>BOOSTER_FILE,
-			'url'=>'https://divibooster.com/themes/divi/',
-			'basename'=>plugin_basename(BOOSTER_FILE), 
-			'admin_menu'=>$admin_menu
-		),
-		'sections'=>$sections
-	)
-);
+if (class_exists('wtfplugin_1_0')) {
+	$wtfdivi = new wtfplugin_1_0(
+		array(
+			'theme'=>$theme,
+			'plugin'=>array(
+				'name'=>BOOSTER_NAME,
+				'shortname'=>BOOSTER_NAME, // menu name
+				'slug'=>$slug,
+				'package_slug'=>BOOSTER_PACKAGE_NAME,
+				'plugin_file'=>BOOSTER_FILE,
+				'url'=>'https://divibooster.com/themes/divi/',
+				'basename'=>plugin_basename(BOOSTER_FILE), 
+				'admin_menu'=>$admin_menu
+			),
+			'sections'=>$sections
+		)
+	);
+} else {
+	add_action('admin_notices', 'db_admin_notice_main_class_missing');
+}
+
+if (!function_exists('db_admin_notice_main_class_missing')) {
+	function db_admin_notice_main_class_missing() {
+		echo apply_filters('db_admin_notice_main_class_missing', '<div class="notice notice-error"><p>Error: The main Divi Booster class cannot be found. This suggests a corrupted plugin directory. Please try reinstalling Divi Booster, or <a href="https://divibooster.com/contact-form/" target="_blank">let me know</a>.</p></div>'); 
+	}
+}
+
 
 // === Load the settings ===
 function divibooster_load_settings($wtfdivi) {
@@ -206,5 +238,5 @@ function divibooster_footer() { ?>
 <p><i>This plugin is an independent product which is not associated with, endorsed by, or supported by Elegant Themes.</i></p>
 <?php
 }	
-add_action($wtfdivi->slug.'-plugin-footer', 'divibooster_footer');
+add_action($slug.'-plugin-footer', 'divibooster_footer');
 

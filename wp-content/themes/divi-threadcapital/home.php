@@ -6,7 +6,7 @@
 
 <div class="post-header" style="background-image: url(<?php echo get_the_post_thumbnail_url($page_for_posts, 'large' ); ?>)">
 	<div class="entry-meta">
-		<h1 class="entry-title">News</h1>
+		<h1 class="entry-title"><?php _e('News', 'divi-thread'); ?></h1>
 	</div>
 </div>
 

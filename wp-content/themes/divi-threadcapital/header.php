@@ -58,7 +58,7 @@ if (is_category(12)) {
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KFB4ZD7"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-<a href="#et-main-area" class="screen-reader-text">Skip to content</a>
+<a href="#et-main-area" class="screen-reader-text"><?php _e('Skip to content', 'divi-thread'); ?></a>
 <?php
 	$product_tour_enabled = et_builder_is_product_tour_enabled();
 	$page_container_style = $product_tour_enabled ? ' style="padding-top: 0px;"' : ''; ?>
@@ -85,61 +85,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	$et_slide_header = 'slide' === et_get_option( 'header_style', 'left' ) || 'fullscreen' === et_get_option( 'header_style', 'left' ) ? true : false;
 ?>
 
-	<?php if ( $et_top_info_defined && ! $et_slide_header || is_customize_preview() ) : ?>
-		<div id="top-header"<?php echo $et_top_info_defined ? '' : 'style="display: none;"'; ?>>
-			<div class="container clearfix">
-
-			<?php if ( $et_contact_info_defined ) : ?>
-
-				<div id="et-info">
-				<?php if ( '' !== ( $et_phone_number = et_get_option( 'phone_number' ) ) ) : ?>
-					<span id="et-info-phone"><?php echo et_sanitize_html_input_text( $et_phone_number ); ?></span>
-				<?php endif; ?>
-
-				<?php if ( '' !== ( $et_email = et_get_option( 'header_email' ) ) ) : ?>
-					<a href="<?php echo esc_attr( 'mailto:' . $et_email ); ?>"><span id="et-info-email"><?php echo esc_html( $et_email ); ?></span></a>
-				<?php endif; ?>
-
-				<?php
-				if ( true === $show_header_social_icons ) {
-					get_template_part( 'includes/social_icons', 'header' );
-				} ?>
-				</div> <!-- #et-info -->
-
-			<?php endif; // true === $et_contact_info_defined ?>
-
-				<div id="et-secondary-menu">
-				<?php
-					if ( ! $et_contact_info_defined && true === $show_header_social_icons ) {
-						get_template_part( 'includes/social_icons', 'header' );
-					} else if ( $et_contact_info_defined && true === $show_header_social_icons ) {
-						ob_start();
-
-						get_template_part( 'includes/social_icons', 'header' );
-
-						$duplicate_social_icons = ob_get_contents();
-
-						ob_end_clean();
-
-						printf(
-							'<div class="et_duplicate_social_icons">
-								%1$s
-							</div>',
-							$duplicate_social_icons
-						);
-					}
-
-					if ( '' !== $et_secondary_nav ) {
-						echo $et_secondary_nav;
-					}
-
-					et_show_cart_total();
-				?>
-				</div> <!-- #et-secondary-menu -->
-
-			</div> <!-- .container -->
-		</div> <!-- #top-header -->
-	<?php endif; // true ==== $et_top_info_defined ?>
+	<div id="top-header"<?php echo $et_top_info_defined ? '' : 'style="display: none;"'; ?>>
+		<div class="container clearfix">
+			<div class="row">
+				<div class="col m6">
+					<?php dynamic_sidebar('top-header-left'); ?>
+				</div>
+				<div class="col m6 align-right">
+					<?php dynamic_sidebar('top-header-right'); ?>
+				</div>
+			</div>
+		</div> <!-- .container -->
+	</div> <!-- #top-header -->
 
 	<?php if ( $et_slide_header || is_customize_preview() ) : ?>
 		<div class="et_slide_in_menu_container">
@@ -169,9 +126,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				<form role="search" method="get" class="et-search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>">
 					<?php
 						printf( '<input type="search" class="et-search-field" placeholder="%1$s" value="%2$s" name="s" title="%3$s" />',
-							esc_attr__( 'Search &hellip;', 'Divi' ),
-							get_search_query(),
-							esc_attr__( 'Search for:', 'Divi' )
+						esc_attr__( 'Search', 'divi-thread' ) . '&hellip;',
+						get_search_query(),
+						esc_attr__( 'Search for', 'divi-thread' ) . ':'
 						);
 					?>
 					<button type="submit" id="searchsubmit_header"></button>
@@ -214,7 +171,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 					if ( '' == $slide_nav ) :
 				?>
 						<?php if ( 'on' == et_get_option( 'divi_home_link' ) ) { ?>
-							<li <?php if ( is_home() ) echo( 'class="current_page_item"' ); ?>><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Home', 'Divi' ); ?></a></li>
+							<li <?php if ( is_home() ) echo( 'class="current_page_item"' ); ?>><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Home', 'divi-thread' ); ?></a></li>
 						<?php }; ?>
 
 						<?php show_page_menu( $slide_menu_class, false, false ); ?>
@@ -257,7 +214,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 						?>
 							<ul id="top-menu" class="<?php echo esc_attr( $menuClass ); ?>">
 								<?php if ( 'on' == et_get_option( 'divi_home_link' ) ) { ?>
-									<li <?php if ( is_home() ) echo( 'class="current_page_item"' ); ?>><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Home', 'Divi' ); ?></a></li>
+									<li <?php if ( is_home() ) echo( 'class="current_page_item"' ); ?>><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Home', 'divi-thread' ); ?></a></li>
 								<?php }; ?>
 
 								<?php show_page_menu( $menuClass, false, false ); ?>
@@ -297,9 +254,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 					<form role="search" method="get" class="et-search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>">
 					<?php
 						printf( '<input type="search" class="et-search-field" placeholder="%1$s" value="%2$s" name="s" title="%3$s" />',
-							esc_attr__( 'Search &hellip;', 'Divi' ),
+							esc_attr__( 'Search', 'divi-thread' ) . '&hellip;',
 							get_search_query(),
-							esc_attr__( 'Search for:', 'Divi' )
+							esc_attr__( 'Search for', 'divi-thread' ) . ':'
 						);
 					?>
 					</form>

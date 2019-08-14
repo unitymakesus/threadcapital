@@ -1,9 +1,9 @@
 === Constant Contact Forms ===
 Contributors:      constantcontact
 Tags: capture, contacts, constant contact, constant contact form, constant contact newsletter, constant contact official, contact forms, email, form, forms, marketing, mobile, newsletter, opt-in, plugin, signup, subscribe, subscription, widget
-Requires at least: 4.0.0
-Tested up to:      4.9.8
-Stable tag:        1.4.3
+Requires at least: 5.0.0
+Tested up to:      5.2.0
+Stable tag:        1.5.3
 License:           GPLv3
 License URI:       http://www.gnu.org/licenses/gpl-3.0.html
 Requires PHP:      5.4
@@ -34,6 +34,38 @@ BONUS: If you have a Constant Contact account, all new email addresses that you 
 5. Basic Form
 
 == Changelog ==
+
+= 1.5.3 =
+* Fixed: Removed TGMPA library files that were causing some conflicts with premium themes or other plugins.
+* Fixed: tweaked shortcode assets URL reference in bundled library for better compatibility with various hosting environments.
+
+= 1.5.2 =
+* Fixed: Javascript conflicts with Lodash and Underscores in conjunction with 1.5.0's Gutenberg support.
+
+= 1.5.1 =
+* Fixed: Issues with editor screen when no forms have been created yet.
+* Fixed: Missed endpoint change for wp-json details with Contant Contact Gutenberg integration.
+
+= 1.5.0 =
+* Added: Gutenberg block. Easier to get a form set up on a Gutenberg powered post or page.
+* Added: Ability to customize "We do not think you are human" spam messaging.
+* Added: Ability to conditionally output a reCAPTCHA field for each form.
+* Added: Better compatibility with WP-SpamShield plugin.
+* Added: Quick button to reset a form's style customization selections.
+* Added: Option to display form title with Constant Contact Forms output.
+* Fixed: Added missing label placement options in settings page and per-form dropdown options.
+* Updated: Ensure we have valid URLs when taking custom redirect values.
+* Updated: Append custom textarea content to existing notes for updated contacts.
+* Updated: Added some "alert" roles for better accessibility.
+* Updated: Added logging of API request parameters before the request is made.
+* Updated: Added logging around valid requests verifications when submitting a form.
+
+= 1.4.5 =
+* Fixed: Conflicts with custom textareas and notes inside of Constant Contact account when updating an existing contact.
+* Fixed: Potential issues around reading Constant Contact Forms error logs when log file is potentially not readable.
+
+= 1.4.4 =
+* Fixed: Hardened reCAPTCHA and form processing from possible AJAX bypass.
 
 = 1.4.3 =
 * Fixed: Persistent spinner on Constant Contact Forms submit button when Google reCAPTCHA is anywhere on the page.
@@ -149,79 +181,25 @@ BONUS: If you have a Constant Contact account, all new email addresses that you 
 * Updated: Improved return messages for submission failures.
 * Updated: Upgraded to the latest version of CMB2.
 
-= 1.2.5 =
-* Fixed: Customized labels no longer reset to default when adding new fields.
-* Added: Ability to bypass using WP_CRON when trying to have form entries sent to ConstantContact.com lists. If you're having trouble getting them sent, use this setting.
-* Updated: Revised content for "Disconnect" page when connected, and have not created a form yet.
-
-= 1.2.4 =
-* Added: Google reCAPTCHA "I am human" checkbox support for forms. See https://www.google.com/recaptcha/intro/. Will fall back to honeypot prevention if not set up.
-* Fixed: Stray quote mark in honeypot markup.
-* Fixed: missing space after placeholder attribute for inputs.
-* Fixed: Removed unintentional "Leave page" confirmation popup when saving settings.
-
-= 1.2.3 =
-* Fixed: Attempt to process forms that have provided a custom url via filter.
-* Fixed: Clean up class attributes regarding validation errors in text inputs.
-
-= 1.2.2 =
-* Fixed: Conflicts with other plugins using the Constant Contact PHP SDK.
-* Fixed: Added honeypot-style spam prevention on forms.
-* Fixed: Removed anonymous function usage in widget to prevent potential errors.
-* Fixed: Hardened up helper function in cases where internal function does not exist.
-* Fixed: Issues with multiple custom textareas and the Constant Contact API. See the "Learn more" link/modal for some more information.
-* Added: Potential admin notice requesting users to review plugin if they have not already.
-
-= 1.2.1 =
-* Fixed: Re-show sections of "Publish" metabox incorrectly hidden for post types outside Constant Contact Forms.
-* Fixed: Issues with transparent background on frontend forms when input is valid.
-* Fixed: Fatal errors on deactivation if user is on PHP 5.3 or lower.
-* Fixed: PHP Warnings regarding missing parameters for maybe_log_mail_status().
-* Updated: Bumped Guzzle to 5.3.1 for PHP7.1 compatibility.
-
-= 1.2.0 =
-* Added: Reveal shortcode for newly published form in admin notice and popup for non-connected accounts.
-* Added: Classes for individual form inputs and textareas on rendered form.
-* Added: Request to opt into some anonymous data tracking for Constant Contact's information usage.
-* Added: Note about no forms being available in modal popup, if none available.
-* Added: Ability to disable emails if Constant Contact account is connected and "disable email" option checked.
-* Added: Necessary disclosure text to output on comment form and login/registration form when able to do advanced opt-in for list enrollment.
-* Fixed: Possible issues with PHP 5.2 compatibility from the widget.
-* Fixed: Prevent status message from displaying multiple times if multiple forms present on the page.
-* Fixed: Ability to remove description values from various available form inputs.
-* Updated: Changed field order in admin UI for creating Constant Contact form.
-* Updated: Better compatibility with TwentyFourteen.
-
-= 1.1.1 =
-* Fixed: Made frontend form default to an empty action attribute to take care of occasional 404 errors after submission.
-* Added: New filter on the default empty string from above, so others can provide their own redirect location if desired.
-
-= 1.1.0 =
-* Added: Widget that allows you to select a form to display.
-* Added: Small metabox in form editor showing shortcode to use for current form.
-* Added: Field and filter for text shown on the rendered submit button.
-* Added: Developers: Inline documentation of actions and filters.
-* Fixed: Loading position of Constant Contact stylesheet. Should now load in `<head>`.
-* Fixed: Removed redundant "Add form" button on Constant Contact form editor TinyMCE.
-* Fixed: Removed required attribute for Address line 2 when line 1 is required.
-* Updated: Labels in Constant Contact Form list around none available and none in trash.
-
 == Frequently Asked Questions ==
 
+#### Installation and Setup
+[https://knowledgebase.constantcontact.com/articles/KnowledgeBase/10054-WordPress-Integration-with-Constant-Contact](https://knowledgebase.constantcontact.com/articles/KnowledgeBase/10054-WordPress-Integration-with-Constant-Contact)
+
 #### Constant Contact Forms Options
-http://knowledgebase.constantcontact.com/articles/KnowledgeBase/18260-WordPress-Constant-Contact-Forms-Options
+[http://knowledgebase.constantcontact.com/articles/KnowledgeBase/18260-WordPress-Constant-Contact-Forms-Options](http://knowledgebase.constantcontact.com/articles/KnowledgeBase/18260-WordPress-Constant-Contact-Forms-Options)
 
 #### Frequently Asked Questions
-https://knowledgebase.constantcontact.com/articles/KnowledgeBase/18491-WordPress-Frequently-Asked-Questions
+[https://knowledgebase.constantcontact.com/articles/KnowledgeBase/18491-WordPress-Frequently-Asked-Questions](https://knowledgebase.constantcontact.com/articles/KnowledgeBase/18491-WordPress-Frequently-Asked-Questions)
 
 #### Constant Contact List Addition Issues
-https://knowledgebase.constantcontact.com/articles/KnowledgeBase/18539-WordPress-Constant-Contact-List-Addition-Issues
+[https://knowledgebase.constantcontact.com/articles/KnowledgeBase/18539-WordPress-Constant-Contact-List-Addition-Issues](https://knowledgebase.constantcontact.com/articles/KnowledgeBase/18539-WordPress-Constant-Contact-List-Addition-Issues)
 
 #### cURL error 60: SSL certificate problem
-https://knowledgebase.constantcontact.com/articles/KnowledgeBase/18159-WordPress-Error-60
+[https://knowledgebase.constantcontact.com/articles/KnowledgeBase/18159-WordPress-Error-60](https://knowledgebase.constantcontact.com/articles/KnowledgeBase/18159-WordPress-Error-60)
 
 #### Add Google reCAPTCHA to Constant Contact Forms
-http://knowledgebase.constantcontact.com/articles/KnowledgeBase/17880
+[http://knowledgebase.constantcontact.com/articles/KnowledgeBase/17880](http://knowledgebase.constantcontact.com/articles/KnowledgeBase/17880)
 
 #### How do I include which custom fields labels are which custom field values in my Constant Contact Account?
 You can add this to your active theme or custom plugin: `add_filter( 'constant_contact_include_custom_field_label', '__return_true' );`. Note: custom fields have a max length of 50 characters. Including the labels will subtract from the 50 character total available.

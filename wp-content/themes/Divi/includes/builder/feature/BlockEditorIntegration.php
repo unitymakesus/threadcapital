@@ -107,6 +107,7 @@ class ET_Builder_Block_Editor_Integration {
 	 * @return void
 	 */
 	public function enqueue_block_editor_assets() {
+		et_fb_enqueue_open_sans();
 		et_fb_enqueue_bundle( 'et-builder-gutenberg', 'gutenberg.js', array( 'jquery' ) );
 		et_fb_enqueue_bundle( 'et-builder-gutenberg', 'gutenberg.css', array() );
 		$res = et_pb_is_pagebuilder_used();
@@ -120,7 +121,7 @@ class ET_Builder_Block_Editor_Integration {
 				'postID'             => get_the_ID(),
 				'postType'           => $post_type,
 				'is3rdPartyPostType' => et_builder_is_post_type_custom( $post_type ) ? 'yes' : 'no',
-				'vbUrl'              => add_query_arg( 'et_fb', true, et_fb_prepare_ssl_link( get_the_permalink() ) ),
+				'vbUrl'              => et_fb_get_vb_url(),
 				'builderUsed'        => et_pb_is_pagebuilder_used(),
 				'scriptDebug'        => defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG,
 				'canToggle'          => et_pb_is_allowed( 'divi_builder_control' ) && $enabled_for_post_type,
@@ -233,7 +234,7 @@ class ET_Builder_Block_Editor_Integration {
 		$edit_url        = $is_divi_library ? get_edit_post_link( $post_id, 'raw' ) : get_permalink( $post_id );
 
 		if ( et_pb_is_pagebuilder_used( $post_id ) ) {
-			$edit_url = add_query_arg( 'et_fb', '1', et_fb_prepare_ssl_link( $edit_url ) );
+			$edit_url = et_fb_get_vb_url( $edit_url );
 		} else {
 			if ( ! et_pb_is_allowed( 'divi_builder_control' ) ) {
 				// Do not add Divi activation link when user lacks `Toggle Divi Builder` capability.
@@ -294,6 +295,12 @@ class ET_Builder_Block_Editor_Integration {
 	 * @return array
 	 */
 	public function display_post_states( $post_states, $post ) {
+		// Make sure that $post_states is an array. Third party plugin might modify $post_states and makes it null
+		// which create various issue (i.e. Piklist + Having a page configured as a static page)
+		if ( ! is_array( $post_states ) ) {
+			$post_states = array();
+		}
+
 		if ( et_pb_is_pagebuilder_used( $post->ID ) ) {
 			// Remove Gutenberg if existing
 			$key = array_search( 'Gutenberg', $post_states );
@@ -310,19 +317,17 @@ class ET_Builder_Block_Editor_Integration {
 	/**
 	 * Ensures that Divi enabled CPTs support 'custom-fields'.
 	 *
-	 * @param array $args CPT definition.
-	 * @param object $post_type CPT type.
+	 * @since 3.19.12
 	 *
-	 * @return array
 	 */
-	public function register_post_type_args( $args, $post_type ) {
-		if ( et_builder_enabled_for_post_type( $post_type ) ) {
-			$supports = empty( $args['supports'] ) ? array() : $args['supports'];
-			if ( ! in_array( 'custom-fields', $supports ) ) {
-				$args['supports'] = array_merge( $supports, array( 'custom-fields' ) );
+	public function ensure_post_type_supports() {
+		$post_types = et_builder_get_builder_post_types();
+
+		foreach ( $post_types as $post_type ) {
+			if ( ! post_type_supports( $post_type, 'custom-fields' ) ) {
+				add_post_type_support( $post_type, 'custom-fields' );
 			}
 		}
-		return $args;
 	}
 
 	/**
@@ -524,7 +529,7 @@ class ET_Builder_Block_Editor_Integration {
 		}
 
 		add_filter( 'et_fb_load_raw_post_content', array( $this, 'et_fb_load_raw_post_content' ) );
-		add_filter( 'register_post_type_args', array( $this, 'register_post_type_args' ), 10, 2 );
+		add_filter( 'init', array( $this, 'ensure_post_type_supports' ), 100 );
 
 		// This is one of the most idiot things I had to do ever and its due to
 		// a 10 month old-yet not fixed WP bug: https://core.trac.wordpress.org/ticket/42069
@@ -563,6 +568,6 @@ class ET_Builder_Block_Editor_Integration {
 }
 
 
-if ( et_is_gutenberg_active() ) {
+if ( et_core_is_gutenberg_active() ) {
 	new ET_Builder_Block_Editor_Integration;
 }

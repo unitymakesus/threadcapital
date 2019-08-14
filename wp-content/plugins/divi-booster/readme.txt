@@ -3,8 +3,8 @@ Contributors: danmossop
 Donate link: 
 Tags: divi theme, elegant themes
 Requires at least: 3.0
-Tested up to: 4.9.8
-Stable tag: 2.7.9
+Tested up to: 5.2.2
+Stable tag: 2.9.5
 
 Enhancements to the Divi Theme by Elegant Themes, including bug fixes and extra configuration options.
 
@@ -52,6 +52,91 @@ To follow...
 
 == Changelog ==
 
+= 2.9.5 =
+* Added check for main plugin class to handle missing class file
+* Added SVG support notice to custom icon feature
+* Moved accordion module options to Accordion Settings > Design > Toggle
+* Code improvements to site title / tagline feature
+* Fixed SVG icons not showing in blurb module
+
+= 2.9.4 =
+* Improvements to gallery image size settings
+
+= 2.9.3 =
+* Fixed slides not showing when background url enabled in latest Divi
+
+= 2.9.2 =
+* Fixed slides not showing when second button enabled in latest Divi
+
+= 2.9.1 =
+* Fixed custom button icons not positioned correctly on IE when using SVGs
+* Fixed custom icons displaying incorrectly in backend builder icon listings
+* Fixed option to disable youtube related videos not working with some video URLs
+* Fixed custom icons displaying incorrectly in some modules in visual builder
+
+= 2.9.0 =
+* Added option to set mobile menu button color
+
+= 2.8.9 =
+* Top header text feature now triggers display of the top header if not otherwise shown
+* Fixed null error in custom icons feature
+* Fixed "indexOf is not a function" javascript error 
+
+= 2.8.8 =
+* Minor improvements to settings page CSS
+* Fixed "Vertically center the header links" setting affecting the centered header menu
+* Updated top header text feature to process shortcodes
+* Enabled dynamic content on second slider button text and URL fields
+* Added "Reverse" option to "Portfolio Module Settings > Design > Layout > Project Order" setting
+* Fixed WooCommerce cart hiding option not working in vertical nav menu
+* Fixed second slider button mis-aligned on mobile
+* Fixed "Enable Divi Builder by default" preventing backend visual builder from loading
+* Added "Email Optin Settings > Design > Layout > Inline Form" option to replace previous signup inline form feature
+
+= 2.8.7 =
+* Updated "Open linked images in a lightbox" setting to work on pages and moved to "Site-wide Settings > Links"
+* Fixed error in plugin action links when Jetpack running
+
+= 2.8.6 =
+* Fixed Divi portability content displaying at end of some admin pages
+* Fixed "Open linked images in a lightbox" feature affecting gallery module
+* Fixed icon not showing on additional slide buttons
+* Fixed JSMin library 'mbstring.func_overload' deprecated warning in PHP 7.2 compatibility checkers
+* Fixed whitelisted field deprecation notices in debug log
+* Updated custom footer option so that it isn't hidden by Divi Den Pro
+
+= 2.8.5 =
+* Updated custom footer HTML option for better SEO and browser support
+
+= 2.8.4 =
+* Fixed person module email icon not showing when Email Address Encoder plugin used 
+* Fixed "Hide header links and search" option hiding logo on centered inline header
+* Added option randomize projects in portfolio modules 
+* Added option to set accordion initial state (default / all open / all closed) on a per-module basis
+* Added option to set accordion closeable on a per-module basis
+* Fixed CSS Manager not displaying non-logged in user CSS
+
+= 2.8.3 =
+* Added option to limit YouTube related videos to same channel in video module
+* Fixed social icons displaying incorrectly prior to first settings save
+* Updated menu separators to better handle mega menus and menu item spacing adjustments
+* Now tries to purge WP caches on settings save to ensure changes show up immediately
+* Updated customizer social media icons - now has 250+ icons and only loads icon css when actually needed
+
+= 2.8.2 =
+* Added fallback text to person module links for screen readers
+* Open social media icon links in new tab now works in Extra
+* Fixed menu separators not positioned correctly on default header format
+
+= 2.8.1 =
+* Fixed issue with undefined et_get_option function in menu separator feature.
+
+= 2.8.0 =
+* Fixed "Visual Builder > Move publish buttons to left" option not working in latest Divi versions
+* Main menu separators now inherit the color of the menu items
+* Fixed customizer option not working until booster settings first saved
+* Fixed module options interfering with global sections in the visual builder
+
 = 2.7.9 =
 * Fixed slider second button URL field not shown in latest Divi
 
@@ -88,96 +173,62 @@ To follow...
 = 2.7.1 =
 * Added additional error checking to htaccess editing code
 
-= 2.7.0 =
+= 2.7 =
 * Added vertical separator bar between main menu items option
 * Added option to change the centered menu "Select Page" box background color
 * Added option to make sidebar collapsible
-
-= 2.6.9 =
 * Added option to show map pin details by default
-
-= 2.6.8 =
 * Fixed logo height affecting menu drop shadow on centered header format
 * Fixed extra icons showing up when custom icon used in gallery / blog module hover overlay
 * Fixed parse error caused by EOL characters in import / export functionality
 * Fixed social icons not working with white-labelled Divi
 * Improved IMDb social icon styles
-
-= 2.6.7 =
 * Added option to open image links in a lightbox
-
-= 2.6.6 =
 * Modified customizer "unpreviewable link" notification on social icons to be less confusing
 * Code module content box now made wider by full screen builder popups option
 * Divi Booster module options now show the mobile settings icon on hover
 * Added option to show the mobile settings icon on hover for all applicable Divi module options
 * Addressed issue where WP rocket removing url params
 * Changed settings file loading to ensure no double loading of settings possible
-
-= 2.6.5 =
 * Fixed show icons on mobile feature not working with right aligned social icons
 * Split footer CSS from mobile content width option into separate footer width content option
 * Fixed social media icon CSS affecting footer width
 * Logo link feature now works on Extra
 * Divi Booster now shows up in Extra WP dashboard menu
 * Secondary header hover color now supports transparency, applies to secondary menu, sets default based on current non-hover color and applies fade transition to phone and text links.
-
-= 2.6.4 =
 * Fixed cachebusting incompatible with some HTTP2 push implementations
 * Added (responsive) height option to slider, post slider, fullwidth slider and fullwidth post slider
-
-= 2.6.3 =
 * Page Layout option on Divi Builder pages now supports LearnDash CPTs
 * Moved Page Layout option to "Divi Builder > Standard Builder" section
-
-= 2.6.2 =
 * Fixed app-style header causing wide logos to shrink
 * Added option to remove unnecessary Divi components from EDD checkout
 * Fixed customizer social icons not saving in WP 4.9
-
-= 2.6.1 =
 * Fixed placing social icons on right pushing secondary menu down
 * Secondary header text option now accepts HTML (for links, etc)
 * Fixed CSS error in social icons feature
 
-= 2.6.0 =
+= 2.6 =
 * Fixed elements being hidden by scroll-to-anchor fix when Divi's own fix also enabled
 * Fixed countdown timer labels not applied on foreign language sites
 * Fixed settings page color pickers broken by WP 4.9
-
-= 2.5.9 =
 * Added option to enable Divi Builder by default on new posts
 * Added "use custom labels" option to countdown timer module
-
-= 2.5.8 =
 * Fixed widget area displaying twice when Divi Lightbox Anypage plugin used 
 * Fixed some sliders not showing after Divi update
 * Fixed additional slide options not showing after Divi update
-
-= 2.5.7 =
 * Fixed app-style header causing horizontal scroll bar to appear
 * Prevented box layout header overlap from applying on non-box layouts
 * Fixed gallery title hiding not applied to popups
 * Fixed umlauts and other characters being unnecessarily encoded in text before mobile menu button
-
-= 2.5.6 =
 * Added instagram icon option to person module
 * Improved IE full-screen header fix to avoid caching issues
 * Extended the compression feature to cover XHTML and RSS
 * Fixed header hiding feature adding extra padding on posts
 * Added support for custom icons on portfolio overlays
-
-= 2.5.5 =
 * Added support for custom icons on blog module image overlays
-
-= 2.5.4 =
 * Fixed getting property of non-object error in page layouts feature
-
-= 2.5.3 =
 * Added additional error checking in admin js
 * Slider background link now smooth scrolls to same page elements
-
-= 2.5.2 =
 * Updated customizer social media icon markup to match Divi's own
 * Title and tagline feature now uses main CSS / JS files
 * Added filter to divi module options credit
@@ -185,8 +236,6 @@ To follow...
 * Added person module option to add email address icon
 * Added person module option to open links in new tab
 * Improved support for custom module options in visual builder
-
-= 2.5.1 =
 * Added option to use main layout library when Divi Builder enabled on CPTs
 
 = 2.5 =

@@ -787,6 +787,7 @@ a:hover, a:focus, a:active {
 }
 #main-header #et-top-navigation {
   margin-left: 50px;
+  text-align: right;
 }
 
 #top-header {

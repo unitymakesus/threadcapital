@@ -85,7 +85,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	$et_slide_header = 'slide' === et_get_option( 'header_style', 'left' ) || 'fullscreen' === et_get_option( 'header_style', 'left' ) ? true : false;
 ?>
 
-	<div id="top-header"<?php echo $et_top_info_defined ? '' : 'style="display: none;"'; ?>>
+	<div id="top-header">
 		<div class="container clearfix">
 			<div class="row">
 				<div class="col m6">

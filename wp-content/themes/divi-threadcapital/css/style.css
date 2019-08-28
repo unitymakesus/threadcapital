@@ -1730,14 +1730,14 @@ a:hover, a:focus, a:active {
   order: 1;
 }
 
-.single-staff .page-title {
+.single-staff .page-title, .single-team .page-title {
   font-size: 14px;
 }
-.single-staff .entry-title {
+.single-staff .entry-title, .single-team .entry-title {
   margin-bottom: 0;
   padding-bottom: 0;
 }
-.single-staff .hentry {
+.single-staff .hentry, .single-team .hentry {
   width: 75%;
   padding: 0 20px;
   margin-left: 25%;
@@ -1745,27 +1745,27 @@ a:hover, a:focus, a:active {
   line-height: 1.7em;
   border-bottom: 0;
 }
-.single-staff .hentry .entry-content {
+.single-staff .hentry .entry-content, .single-team .hentry .entry-content {
   overflow: visible;
 }
 @media (max-width: 980px) {
-  .single-staff .hentry {
+  .single-staff .hentry, .single-team .hentry {
     width: 67%;
     margin-left: 33%;
   }
-  .single-staff .hentry .person {
+  .single-staff .hentry .person, .single-team .hentry .person {
     display: block;
   }
-  .single-staff .hentry .col_3_8 {
+  .single-staff .hentry .col_3_8, .single-team .hentry .col_3_8 {
     float: right;
     padding: 0 0 20px 20px;
   }
-  .single-staff .hentry .col_5_8 {
+  .single-staff .hentry .col_5_8, .single-team .hentry .col_5_8 {
     width: 100%;
     padding: 0;
   }
 }
-.single-staff .person {
+.single-staff .person, .single-team .person {
   border-bottom: 0 none;
   margin-bottom: 0;
 }
@@ -1775,7 +1775,7 @@ a:hover, a:focus, a:active {
     display: block;
   }
 
-  .single-staff .hentry {
+  .single-staff .hentry, .single-team .hentry {
     width: 100%;
     margin-left: 0px;
   }

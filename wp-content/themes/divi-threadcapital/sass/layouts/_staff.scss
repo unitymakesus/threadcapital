@@ -50,7 +50,7 @@
   }
 }
 
-.single-staff {
+.single-staff, .single-team {
   .page-title {
     font-size: 14px;
   }
@@ -103,7 +103,7 @@
     display: block;
   }
 
-  .single-staff .hentry {
+  .single-staff .hentry, .single-team .hentry {
     width: 100%;
     margin-left: 0px;
   }

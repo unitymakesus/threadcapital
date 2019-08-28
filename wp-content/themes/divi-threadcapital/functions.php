@@ -148,6 +148,41 @@ add_shortcode('staff-listing', function($atts) {
 	return ob_get_clean();
 });
 
+/**
+ * Team list shortcode
+ */
+add_shortcode('team-listing', function($atts) {
+	$staff = new WP_Query([
+		'post_type' => 'team',
+		'posts_per_page' => -1,
+		'orderby' => 'menu_order',
+		'order' => 'ASC',
+	]);
+
+	ob_start();
+
+	if ($staff->have_posts()) : while ($staff->have_posts()) : $staff->the_post();
+		?>
+		<div class="row person" itemscope itemprop="author" itemtype="http://schema.org/Person">
+			<div class="col_5_8">
+				<h3 itemprop="name"><?php the_title(); ?></h3>
+				<div class="title" itemprop="jobTitle"><?php the_field('title'); ?></div>
+				<div><a itemprop="email" target="_blank" rel="noopener" href="mailto:<?php echo eae_encode_str(get_field('email')); ?>"><?php the_field('email'); ?></a></div>
+				<?php the_advanced_excerpt(); ?>
+			</div>
+			<div class="col_3_8">
+				<?php the_post_thumbnail('medium', ['alt' => __('Photograph of', 'divi-thread') . ' ' . get_the_title(), 'itemprop' => 'image']); ?>
+				<div class="tagline">
+					<?php the_field('tagline'); ?>
+				</div>
+			</div>
+		</div>
+		<?php
+	endwhile; endif; wp_reset_postdata();
+
+	return ob_get_clean();
+});
+
 
 /**
  * Process Graphic Shortcode
